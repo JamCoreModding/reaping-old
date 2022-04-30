@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+issueTrackerURL = "https://github.com/JamCoreModding/Reaping/issues"
+license = "MIT"
+
+[[mods]]
+modId = "reaping"
+version = "${version}"
+displayName = "Reaping"
+authors = "Jamalam"
+description = '''
+Harvest your animals in the most cursed way possible.
+'''
+logoFile = "icon.png"
+
+[[dependencies.reaping]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.reaping]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.reaping]]
+modId = "architectury"
+mandatory = true
+versionRange = "[4.2.50,)"
+ordering = "AFTER"
+side = "BOTH"

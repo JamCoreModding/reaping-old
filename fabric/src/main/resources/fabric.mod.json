@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "reaping",
+  "version": "${version}",
+  "name": "Reaping",
+  "description": "Harvest your animals in the most cursed way possible.",
+  "authors": [
+    "Jamalam"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/reaping",
+    "sources": "https://github.com/JamCoreModding/Reaping",
+    "issues": "https://github.com/JamCoreModding/Reaping/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/reaping/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.jamalam360.reaping.fabric.ReapingFabric"
+    ],
+    "modmenu": [
+      "io.github.jamalam360.reaping.fabriclike.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "reaping-common.mixins.json",
+    "reaping-fabriclike.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.18.2",
+    "architectury": ">=4.2.50"
+  }
+}

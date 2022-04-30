@@ -1,0 +1,14 @@
+{
+  "item.reaping.iron_reaping_tool": "Iron Reaper",
+  "item.reaping.gold_reaping_tool": "Gold Reaper",
+  "item.reaping.diamond_reaping_tool": "Diamond Reaper",
+  "item.reaping.netherite_reaping_tool": "Netherite Reaper",
+  "reaping.advancements.netherite_reaping_tool.title": "Why would you do that?",
+  "reaping.advancements.netherite_reaping_tool.description": "Seriously, sit down and ask yourself: 'Why did I do that?'",
+  "stat.reaping.use_reaper_tool": "Uses of Reaper Tool",
+  "text.autoconfig.reaping.title": "Reaping Mod Configuration",
+  "text.autoconfig.reaping.option.enableDispenserBehavior": "Enable Dispenser Behavior",
+  "text.autoconfig.reaping.option.damageAnimals": "Damage Reaped Animals",
+  "text.autoconfig.reaping.option.dropXp": "Drop XP",
+  "text.autoconfig.reaping.option.reapBabies": "Reap Babies"
+}

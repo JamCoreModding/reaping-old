@@ -1,0 +1,23 @@
+package io.github.jamalam360.reaping.fabric;
+
+import io.github.jamalam360.reaping.config.ReapingConfig;
+import io.github.jamalam360.reaping.fabriclike.ReapingFabricLike;
+import io.github.jamalam360.reaping.fabriclike.mixin.LootContextBuilderAccessor;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.loot.context.LootContext;
+
+public class ReapingExpectPlatformImpl {
+    public static ReapingConfig getConfig() {
+        return ReapingFabricLike.getConfig();
+    }
+
+    public static boolean isModLoaded(String modId) {
+        return FabricLoader.getInstance().isModLoaded(modId);
+    }
+
+    public static  LootContext.Builder getLootContextBuilder(LivingEntity entity, boolean causedByPlayer, DamageSource source) {
+        return ((LootContextBuilderAccessor) entity).callGetLootContextBuilder(causedByPlayer, source);
+    }
+}
