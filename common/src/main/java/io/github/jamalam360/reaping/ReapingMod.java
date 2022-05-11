@@ -6,8 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
-import net.minecraft.stat.StatFormatter;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
@@ -19,7 +17,6 @@ public class ReapingMod {
     public static final String MOD_NAME = "Reaping";
     public static Logger LOGGER = LogManager.getLogger();
 
-    //    public static final Supplier<Registries> REGISTRIES = Suppliers.memoize(() -> Registries.get(MOD_ID));
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_KEY);
     public static final DeferredRegister<Identifier> STATS = DeferredRegister.create(MOD_ID, Registry.CUSTOM_STAT_KEY);
 
@@ -30,13 +27,6 @@ public class ReapingMod {
 
         ITEMS.register();
         STATS.register();
-
-//        REGISTRIES.get().get(Registry.CUSTOM_STAT_KEY).register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
-
-//        registerReapingTool(ToolMaterials.IRON, "iron_reaping_tool");
-//        registerReapingTool(ToolMaterials.GOLD, "gold_reaping_tool");
-//        registerReapingTool(ToolMaterials.DIAMOND, "diamond_reaping_tool");
-//        registerReapingTool(ToolMaterials.NETHERITE, "netherite_reaping_tool");
 
         if (ReapingExpectPlatform.isModLoaded("harvest_scythes")) {
             log(Level.INFO, "Enabling Harvest Scythe compatibility...");
