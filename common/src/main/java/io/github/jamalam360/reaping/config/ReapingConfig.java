@@ -12,5 +12,7 @@ public interface ReapingConfig {
 
     boolean reapBabies();
 
+    boolean reapPlayers();
+
     int deathChance();
 }

@@ -3,7 +3,8 @@
   "package": "io.github.jamalam360.reaping.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ItemMixin"
+    "ItemMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

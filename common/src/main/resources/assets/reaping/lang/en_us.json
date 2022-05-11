@@ -9,6 +9,7 @@
   "text.autoconfig.reaping.title": "Reaping Mod Configuration",
   "text.autoconfig.reaping.option.enableDispenserBehavior": "Enable dispensers",
   "text.autoconfig.reaping.option.reapBabies": "Allow reaping babies",
+  "text.autoconfig.reaping.option.reapPlayers": "Allow reaping players",
   "text.autoconfig.reaping.option.damageAnimals": "Damage animals when reaped",
   "text.autoconfig.reaping.option.dropXp": "Drop XP when reaped",
   "text.autoconfig.reaping.option.deathChance": "Death chance when reaped (0-100)"

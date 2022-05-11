@@ -23,5 +23,6 @@ public class ReapingExpectPlatform {
         throw new AssertionError();
     }
 
-    public void setScale(PlayerEntity player, double scale) { throw new AssertionError(); }
+    @ExpectPlatform
+    public static void setScale(PlayerEntity player, float scale) { throw new AssertionError(); }
 }

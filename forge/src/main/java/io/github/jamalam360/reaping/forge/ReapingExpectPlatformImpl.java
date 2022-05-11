@@ -9,6 +9,8 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraftforge.fml.ModList;
+import virtuoel.pehkui.api.ScaleData;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class ReapingExpectPlatformImpl {
     public static ReapingConfig getConfig() {
@@ -32,5 +34,10 @@ public class ReapingExpectPlatformImpl {
         }
 
         return builder;
+    }
+
+    public static void setScale(PlayerEntity player, float scale) {
+        ScaleData data = ScaleTypes.BASE.getScaleData(player);
+        data.setTargetScale(scale);
     }
 }

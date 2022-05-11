@@ -14,6 +14,7 @@ public class ReapingConfigFabricLike implements ConfigData, ReapingConfig {
     private boolean damageAnimals = true;
     private boolean dropXp = true;
     private boolean reapBabies = true;
+    private boolean reapPlayers = true;
     private int deathChance = 10;
 
     @Override
@@ -41,6 +42,11 @@ public class ReapingConfigFabricLike implements ConfigData, ReapingConfig {
     @Override
     public boolean reapBabies() {
         return this.reapBabies;
+    }
+
+    @Override
+    public boolean reapPlayers() {
+        return this.reapPlayers;
     }
 
     @Override

@@ -16,5 +16,4 @@ dependencies {
     modApi("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
 
     compileClasspath(project(path: ":common", configuration: "namedElements")) { transitive false }
-
 }
