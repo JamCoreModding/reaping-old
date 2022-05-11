@@ -1,8 +1,8 @@
 plugins {
     id "org.cadixdev.licenser" version "0.6.1"
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "0.11.0-SNAPSHOT" apply false
-    id "org.quiltmc.quilt-mappings-on-loom" version "4.0.0"
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
+    id "org.quiltmc.quilt-mappings-on-loom" version "4.2.0"
 }
 
 architectury {

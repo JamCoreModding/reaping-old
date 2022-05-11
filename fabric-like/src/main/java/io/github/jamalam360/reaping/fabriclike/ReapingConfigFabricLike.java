@@ -14,6 +14,14 @@ public class ReapingConfigFabricLike implements ConfigData, ReapingConfig {
     private boolean damageAnimals = true;
     private boolean dropXp = true;
     private boolean reapBabies = true;
+    private int deathChance = 10;
+
+    @Override
+    public void validatePostLoad() throws ValidationException {
+        if (deathChance < 0 || deathChance > 100) {
+            throw new ValidationException("deathChance must be between 0 and 100");
+        }
+    }
 
     @Override
     public boolean enableDispenserBehavior() {
@@ -33,5 +41,10 @@ public class ReapingConfigFabricLike implements ConfigData, ReapingConfig {
     @Override
     public boolean reapBabies() {
         return this.reapBabies;
+    }
+
+    @Override
+    public int deathChance() {
+        return this.deathChance;
     }
 }

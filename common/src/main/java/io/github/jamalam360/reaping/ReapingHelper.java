@@ -31,8 +31,10 @@ public class ReapingHelper {
         ReapingConfig conf = ReapingExpectPlatform.getConfig();
         int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, toolStack);
 
+        ActionResult result;
+
         if (!VALID_REAPING_TOOLS.contains(toolStack.getItem().getClass())) {
-            return ActionResult.PASS;
+            result = ActionResult.PASS;
         } else if (reapedEntity instanceof AnimalEntity && !reapedEntity.isBaby()) {
             dropEntityStacks(reapedEntity, toolStack);
 
@@ -52,7 +54,7 @@ public class ReapingHelper {
                 reapedEntity.world.spawnEntity(EntityType.EXPERIENCE_ORB.create(reapedEntity.world));
             }
 
-            return ActionResult.SUCCESS;
+            result = ActionResult.SUCCESS;
         } else if (reapedEntity instanceof AnimalEntity && reapedEntity.isBaby() && conf.reapBabies()) {
             reapedEntity.kill();
 
@@ -64,10 +66,20 @@ public class ReapingHelper {
                 reapedEntity.world.spawnEntity(EntityType.EXPERIENCE_ORB.create(reapedEntity.world));
             }
 
-            return ActionResult.SUCCESS;
+            result = ActionResult.SUCCESS;
         } else {
-            return ActionResult.PASS;
+            result = ActionResult.PASS;
         }
+
+        if (result == ActionResult.SUCCESS) {
+            double chance = conf.deathChance() / 100D;
+
+            if (RANDOM.nextDouble() <= chance) {
+                reapedEntity.kill();
+            }
+        }
+
+        return result;
     }
 
     private static void dropEntityStacks(LivingEntity entity, ItemStack stack) {

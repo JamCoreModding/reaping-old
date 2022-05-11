@@ -5,7 +5,12 @@ package io.github.jamalam360.reaping.config;
  */
 public interface ReapingConfig {
     boolean enableDispenserBehavior();
-     boolean damageAnimals();
-     boolean dropXp();
-     boolean reapBabies();
+
+    boolean damageAnimals();
+
+    boolean dropXp();
+
+    boolean reapBabies();
+
+    int deathChance();
 }

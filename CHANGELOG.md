@@ -2,7 +2,7 @@
 
 ### Features
 
-- No features were added in this update.
+- Add a configurable chance of death when an animal is reaped.
 
 ### Fixes
 
