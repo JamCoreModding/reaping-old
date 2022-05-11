@@ -3,10 +3,10 @@ package io.github.jamalam360.reaping;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -38,10 +38,7 @@ public class ReapingToolDispenserBehavior extends FallibleItemDispenserBehavior 
         List<LivingEntity> list = world.getEntitiesByClass(LivingEntity.class, new Box(pos), EntityPredicates.EXCEPT_SPECTATOR);
 
         for (LivingEntity livingEntity : list) {
-            if (livingEntity instanceof AnimalEntity && !livingEntity.isBaby()) {
-                ReapingHelper.tryReap(livingEntity, stack);
-                return true;
-            }
+            return ReapingHelper.tryReap(livingEntity, stack) == ActionResult.SUCCESS;
         }
 
         return false;
