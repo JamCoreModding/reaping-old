@@ -2,6 +2,7 @@ package io.github.jamalam360.reaping.mixin;
 
 import io.github.jamalam360.reaping.PlayerEntityDuck;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
+import io.github.jamalam360.reaping.ReapingMod;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -60,6 +62,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
             } else {
                 this.damage(DamageSource.GENERIC, 1.0f);
             }
+
+            this.dropItem(ReapingMod.ITEMS.getRegistrar().get(new Identifier(ReapingMod.MOD_ID, "human_meat")));
 
             return ActionResult.SUCCESS;
         } else {

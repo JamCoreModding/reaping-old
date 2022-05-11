@@ -2,11 +2,11 @@ package io.github.jamalam360.reaping;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -47,9 +47,7 @@ public class ReapingMod {
     }
 
     private static ReaperItem getReapingTool(ToolMaterial material) {
-//        Registrar<Item> items = REGISTRIES.get().get(Registry.ITEM_KEY);
         ReaperItem item = new ReaperItem(reaperBaseProperties(), material);
-//        items.register(new Identifier(MOD_ID, id), () -> item);
         DispenserBlock.registerBehavior(item, new ReapingToolDispenserBehavior());
         ReapingHelper.registerValidReapingTool(item.getClass());
         return item;
@@ -66,5 +64,21 @@ public class ReapingMod {
         ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD));
         ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND));
         ITEMS.register(new Identifier(MOD_ID, "netherite_reaping_tool"), () -> getReapingTool(ToolMaterials.NETHERITE));
+
+        ITEMS.register(
+                new Identifier(MOD_ID, "human_meat"),
+                () -> new Item(
+                        new Item.Settings()
+                                .group(ItemGroup.FOOD)
+                                .food(new FoodComponent.Builder()
+                                        .meat().alwaysEdible()
+                                        .hunger(8).saturationModifier(10f)
+                                        .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER), 1)
+                                        .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA), 1)
+                                        .build()
+                                )
+                                .rarity(Rarity.UNCOMMON)
+                )
+        );
     }
 }

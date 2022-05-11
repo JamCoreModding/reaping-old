@@ -4,6 +4,7 @@
 
 - Add a configurable chance of death when an animal is reaped.
 - Allow reaping of players, which causes the player to shrink dramatically.
+- Add suspicious meat hehehehehehehehe.
 
 ### Fixes
 
