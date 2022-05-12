@@ -1,6 +1,6 @@
 package io.github.jamalam360.reaping.mixin;
 
-import io.github.jamalam360.reaping.ReapingHelper;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

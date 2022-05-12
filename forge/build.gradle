@@ -19,7 +19,6 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
 
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}"
     modApi "com.github.Virtuoel:Pehkui:${rootProject.pehkui_forge}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

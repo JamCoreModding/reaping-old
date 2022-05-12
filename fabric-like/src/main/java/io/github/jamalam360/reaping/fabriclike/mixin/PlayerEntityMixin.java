@@ -1,7 +1,7 @@
 package io.github.jamalam360.reaping.fabriclike.mixin;
 
 import io.github.jamalam360.reaping.ReaperItem;
-import io.github.jamalam360.reaping.ReapingHelper;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

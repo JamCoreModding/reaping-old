@@ -19,9 +19,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
     modApi("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
     modApi("com.github.Virtuoel:Pehkui:${rootProject.pehkui_fabric}", {
         exclude group: "net.fabricmc.fabric-api"

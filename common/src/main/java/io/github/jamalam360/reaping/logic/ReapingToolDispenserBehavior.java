@@ -1,5 +1,7 @@
-package io.github.jamalam360.reaping;
+package io.github.jamalam360.reaping.logic;
 
+import io.github.jamalam360.reaping.config.ReapingConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +24,7 @@ public class ReapingToolDispenserBehavior extends FallibleItemDispenserBehavior 
 
     @Override
     public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
-        if (ReapingExpectPlatform.getConfig().enableDispenserBehavior()) {
+        if (AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().enableDispenserBehavior) {
             BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
             this.setSuccess(tryReapEntity(pointer.getWorld(), blockPos, stack));
 

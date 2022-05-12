@@ -1,6 +1,11 @@
 package io.github.jamalam360.reaping;
 
 import dev.architectury.registry.registries.DeferredRegister;
+import io.github.jamalam360.reaping.config.ReapingConfig;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
+import io.github.jamalam360.reaping.logic.ReapingToolDispenserBehavior;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -26,6 +31,8 @@ public class ReapingMod {
 
         ITEMS.register();
         STATS.register();
+
+        AutoConfig.register(ReapingConfig.class, GsonConfigSerializer::new);
 
         if (ReapingExpectPlatform.isModLoaded("harvest_scythes")) {
             log(Level.INFO, "Enabling Harvest Scythe compatibility...");

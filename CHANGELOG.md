@@ -5,7 +5,7 @@
 - Add a configurable chance of death when an animal is reaped.
 - Allow reaping of players, which causes the player to shrink dramatically.
 - Allow reaping of villagers, as above.
-- Add suspicious meat hehehehehehehehe.
+- Add suspicious meat.
 - Add an advancement.
 
 ### Fixes

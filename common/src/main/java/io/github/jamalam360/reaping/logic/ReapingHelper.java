@@ -1,6 +1,8 @@
-package io.github.jamalam360.reaping;
+package io.github.jamalam360.reaping.logic;
 
+import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.config.ReapingConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -28,7 +30,7 @@ public class ReapingHelper {
     private static final Random RANDOM = new Random();
 
     public static ActionResult tryReap(LivingEntity reapedEntity, ItemStack toolStack) {
-        ReapingConfig conf = ReapingExpectPlatform.getConfig();
+        ReapingConfig conf = AutoConfig.getConfigHolder(ReapingConfig.class).getConfig();
         int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, toolStack);
 
         ActionResult result;
@@ -44,7 +46,7 @@ public class ReapingHelper {
 
             reapedEntity.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
-            if (conf.damageAnimals()) {
+            if (conf.damageAnimals) {
                 if (toolStack.getHolder() != null) {
                     reapedEntity.damage(DamageSource.player((PlayerEntity) toolStack.getHolder()), 1.0f);
                 } else {
@@ -52,18 +54,18 @@ public class ReapingHelper {
                 }
             }
 
-            if (conf.dropXp()) {
+            if (conf.dropXp) {
                 reapedEntity.world.spawnEntity(EntityType.EXPERIENCE_ORB.create(reapedEntity.world));
             }
 
             result = ActionResult.SUCCESS;
-        } else if (reapedEntity instanceof AnimalEntity && reapedEntity.isBaby() && conf.reapBabies()) {
+        } else if (reapedEntity instanceof AnimalEntity && reapedEntity.isBaby() && conf.reapBabies) {
             reapedEntity.kill();
 
             reapedEntity.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1.0f, 1.0f);
             reapedEntity.dropStack(new ItemStack(Items.BONE, lootingLvl == 0 ? 1 : reapedEntity.world.random.nextInt(lootingLvl) + 1));
 
-            if (conf.dropXp()) {
+            if (conf.dropXp) {
                 reapedEntity.world.spawnEntity(EntityType.EXPERIENCE_ORB.create(reapedEntity.world));
                 reapedEntity.world.spawnEntity(EntityType.EXPERIENCE_ORB.create(reapedEntity.world));
             }
@@ -74,7 +76,7 @@ public class ReapingHelper {
         }
 
         if (result == ActionResult.SUCCESS) {
-            double chance = conf.deathChance() / 100D;
+            double chance = conf.deathChance / 100D;
 
             if (RANDOM.nextDouble() <= chance) {
                 reapedEntity.kill();

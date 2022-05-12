@@ -2,6 +2,7 @@ package io.github.jamalam360.reaping;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;

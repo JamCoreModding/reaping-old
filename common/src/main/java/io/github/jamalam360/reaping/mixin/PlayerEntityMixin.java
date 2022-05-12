@@ -1,6 +1,6 @@
 package io.github.jamalam360.reaping.mixin;
 
-import io.github.jamalam360.reaping.CustomReapableEntityDuck;
+import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
 import net.minecraft.entity.EntityType;

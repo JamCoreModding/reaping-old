@@ -1,7 +1,5 @@
 package io.github.jamalam360.reaping.fabric;
 
-import io.github.jamalam360.reaping.config.ReapingConfig;
-import io.github.jamalam360.reaping.fabriclike.ReapingFabricLike;
 import io.github.jamalam360.reaping.fabriclike.mixin.LootContextBuilderAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.LivingEntity;
@@ -11,10 +9,6 @@ import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleTypes;
 
 public class ReapingExpectPlatformImpl {
-    public static ReapingConfig getConfig() {
-        return ReapingFabricLike.getConfig();
-    }
-
     public static boolean isModLoaded(String modId) {
         return FabricLoader.getInstance().isModLoaded(modId);
     }
