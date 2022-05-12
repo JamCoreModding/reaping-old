@@ -7,6 +7,12 @@ the reaper tool simply cuts off most of the animal, making them a child again - 
 
 ![Demo GIF](demo.gif)
 
+The reapers can be crafted like so:
+
+![Diamond Reaper Recipe](recipe.png)
+
 Available for both Forge and Fabric.
 
-Please see the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/reaping) for downloads.
+[CurseForge page](https://www.curseforge.com/minecraft/mc-mods/reaping)
+
+[Discord](https://discord.jamalam.tech)
