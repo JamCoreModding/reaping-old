@@ -1,8 +1,10 @@
 package io.github.jamalam360.reaping.mixin;
 
-import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.config.ReapingConfig;
+import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -41,8 +43,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             at = @At("TAIL")
     )
     public void reapingmod$serializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
-         nbt.putBoolean("reapingmod$remainSmall", this.reapingmod$remainSmall);
-         nbt.putInt("reapingmod$remainSmallTicks", this.reapingmod$remainingSmallTicks);
+        nbt.putBoolean("reapingmod$remainSmall", this.reapingmod$remainSmall);
+        nbt.putInt("reapingmod$remainSmallTicks", this.reapingmod$remainingSmallTicks);
     }
 
     @Inject(
@@ -69,7 +71,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
 
     @Override
     public ActionResult reapingmod$onReaped(ItemStack toolStack) {
-        if (!this.reapingmod$remainSmall && ReapingExpectPlatform.getConfig().reapPlayers()) {
+        if (!this.reapingmod$remainSmall && AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().reapPlayers) {
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
             ReapingExpectPlatform.setScale((PlayerEntity) (Object) this, 0.45f);
