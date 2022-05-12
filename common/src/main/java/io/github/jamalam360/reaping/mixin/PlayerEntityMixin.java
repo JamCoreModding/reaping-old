@@ -65,7 +65,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             this.reapingmod$remainingSmallTicks--;
         } else if (this.reapingmod$remainingSmallTicks <= 0 && this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = false;
-            ReapingExpectPlatform.setScale((PlayerEntity) (Object) this, 1f);
+            ReapingExpectPlatform.setScale(this, 1f);
         }
     }
 
@@ -74,8 +74,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
         if (!this.reapingmod$remainSmall && AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().reapPlayers) {
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
-            ReapingExpectPlatform.setScale((PlayerEntity) (Object) this, 0.45f);
 
+            this.dropItem(ReapingMod.ITEMS.getRegistrar().get(new Identifier(ReapingMod.MOD_ID, "human_meat")));
+            ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
             if (toolStack.getHolder() != null) {
@@ -84,7 +85,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
                 this.damage(DamageSource.GENERIC, 1.0f);
             }
 
-            this.dropItem(ReapingMod.ITEMS.getRegistrar().get(new Identifier(ReapingMod.MOD_ID, "human_meat")));
 
             return ActionResult.SUCCESS;
         } else {
