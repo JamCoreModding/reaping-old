@@ -8,6 +8,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
@@ -33,6 +34,24 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Inject(
+            method = "writeCustomDataToNbt",
+            at = @At("TAIL")
+    )
+    public void reapingmod$serializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+         nbt.putBoolean("reapingmod$remainSmall", this.reapingmod$remainSmall);
+         nbt.putInt("reapingmod$remainSmallTicks", this.reapingmod$remainingSmallTicks);
+    }
+
+    @Inject(
+            method = "readCustomDataFromNbt",
+            at = @At("TAIL")
+    )
+    public void reapingmod$deserializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+        this.reapingmod$remainSmall = nbt.getBoolean("reapingmod$remainSmall");
+        this.reapingmod$remainingSmallTicks = nbt.getInt("reapingmod$remainSmallTicks");
     }
 
     @Inject(

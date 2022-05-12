@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -32,6 +33,24 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
 
     public VillagerEntityMixin(EntityType<? extends MerchantEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Inject(
+            method = "writeCustomDataToNbt",
+            at = @At("TAIL")
+    )
+    public void reapingmod$serializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putBoolean("reapingmod$remainSmall", this.reapingmod$remainSmall);
+        nbt.putInt("reapingmod$remainSmallTicks", this.reapingmod$remainingSmallTicks);
+    }
+
+    @Inject(
+            method = "readCustomDataFromNbt",
+            at = @At("TAIL")
+    )
+    public void reapingmod$deserializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+        this.reapingmod$remainSmall = nbt.getBoolean("reapingmod$remainSmall");
+        this.reapingmod$remainingSmallTicks = nbt.getInt("reapingmod$remainSmallTicks");
     }
 
     @Inject(

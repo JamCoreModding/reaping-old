@@ -6,7 +6,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -73,8 +72,9 @@ public class ReapingMod {
                                 .food(new FoodComponent.Builder()
                                         .meat().alwaysEdible()
                                         .hunger(8).saturationModifier(10f)
-                                        .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER), 1)
-                                        .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA), 1)
+                                        .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 25 * 20), 1)
+                                        .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 35 * 20), 1)
+                                        .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 10 * 20), 1)
                                         .build()
                                 )
                 )

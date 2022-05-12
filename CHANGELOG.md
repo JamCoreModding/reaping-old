@@ -6,6 +6,7 @@
 - Allow reaping of players, which causes the player to shrink dramatically.
 - Allow reaping of villagers, as above.
 - Add suspicious meat hehehehehehehehe.
+- Add an advancement.
 
 ### Fixes
 

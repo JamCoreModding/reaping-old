@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "display": {
+    "icon": {
+      "item": "reaping:human_meat",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "reaping.advancements.human_meat.title"
+    },
+    "description": {
+      "translate": "reaping.advancements.human_meat.description"
+    },
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "reaping:human_meat"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_meat"
+    ]
+  ]
+}
