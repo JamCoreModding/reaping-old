@@ -36,8 +36,8 @@ public class ReapingExpectPlatformImpl {
         return builder;
     }
 
-    public static void setScale(PlayerEntity player, float scale) {
-        ScaleData data = ScaleTypes.BASE.getScaleData(player);
+    public static void setScale(LivingEntity entity, float scale) {
+        ScaleData data = ScaleTypes.BASE.getScaleData(entity);
         data.setTargetScale(scale);
     }
 }

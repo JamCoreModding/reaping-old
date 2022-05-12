@@ -6,6 +6,6 @@ import net.minecraft.util.ActionResult;
 /**
  * @author Jamalam360
  */
-public interface PlayerEntityDuck {
+public interface CustomReapableEntityDuck {
     ActionResult reapingmod$onReaped(ItemStack toolStack);
 }

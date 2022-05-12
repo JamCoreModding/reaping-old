@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "ItemMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "VillagerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

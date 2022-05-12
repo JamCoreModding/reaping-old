@@ -77,7 +77,6 @@ public class ReapingMod {
                                         .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA), 1)
                                         .build()
                                 )
-                                .rarity(Rarity.UNCOMMON)
                 )
         );
     }

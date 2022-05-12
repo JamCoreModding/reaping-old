@@ -52,7 +52,6 @@ public class ReaperItem extends Item implements Vanishable {
         if (ReapingHelper.tryReap(entity, stack) == ActionResult.SUCCESS) {
             user.getStackInHand(hand).damage(1, user, (p) -> p.sendToolBreakStatus(hand));
             user.increaseStat(ReapingMod.USE_REAPER_TOOL_STAT, 1);
-            ((PlayerEntityDuck) user).reapingmod$onReaped(stack);
             return ActionResult.SUCCESS;
         } else {
             return ActionResult.PASS;

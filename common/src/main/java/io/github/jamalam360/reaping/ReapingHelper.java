@@ -35,8 +35,8 @@ public class ReapingHelper {
 
         if (!VALID_REAPING_TOOLS.contains(toolStack.getItem().getClass())) {
             result = ActionResult.PASS;
-        } else if (reapedEntity instanceof PlayerEntity player) {
-            return ((PlayerEntityDuck) player).reapingmod$onReaped(toolStack);
+        } else if (reapedEntity instanceof CustomReapableEntityDuck reapableEntity) {
+            return reapableEntity.reapingmod$onReaped(toolStack);
         } else if (reapedEntity instanceof AnimalEntity && !reapedEntity.isBaby()) {
             dropEntityStacks(reapedEntity, toolStack);
 

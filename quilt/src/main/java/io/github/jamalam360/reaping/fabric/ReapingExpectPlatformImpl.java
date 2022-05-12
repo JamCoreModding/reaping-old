@@ -5,7 +5,6 @@ import io.github.jamalam360.reaping.fabriclike.ReapingFabricLike;
 import io.github.jamalam360.reaping.fabriclike.mixin.LootContextBuilderAccessor;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.loot.context.LootContext;
 import org.quiltmc.loader.api.QuiltLoader;
 import virtuoel.pehkui.api.ScaleData;
@@ -27,8 +26,8 @@ public class ReapingExpectPlatformImpl {
         return ((LootContextBuilderAccessor) entity).callGetLootContextBuilder(causedByPlayer, source);
     }
 
-    public static void setScale(PlayerEntity player, float scale) {
-        ScaleData data = ScaleTypes.BASE.getScaleData(player);
+    public static void setScale(LivingEntity entity, float scale) {
+        ScaleData data = ScaleTypes.BASE.getScaleData(entity);
         data.setTargetScale(scale);
     }
 }

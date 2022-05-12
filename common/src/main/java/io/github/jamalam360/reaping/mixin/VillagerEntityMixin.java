@@ -2,36 +2,35 @@ package io.github.jamalam360.reaping.mixin;
 
 import io.github.jamalam360.reaping.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
+import io.github.jamalam360.reaping.ReapingHelper;
 import io.github.jamalam360.reaping.ReapingMod;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.MerchantEntity;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * @author Jamalam360
  */
 
-@SuppressWarnings("ConstantConditions")
-@Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements CustomReapableEntityDuck {
-    @Shadow
-    public abstract boolean damage(DamageSource source, float amount);
-
+@Mixin(VillagerEntity.class)
+public abstract class VillagerEntityMixin extends MerchantEntity implements CustomReapableEntityDuck {
     private boolean reapingmod$remainSmall = false;
     private int reapingmod$remainingSmallTicks = 0;
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    public VillagerEntityMixin(EntityType<? extends MerchantEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -44,16 +43,27 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             this.reapingmod$remainingSmallTicks--;
         } else if (this.reapingmod$remainingSmallTicks <= 0 && this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = false;
-            ReapingExpectPlatform.setScale((PlayerEntity) (Object) this, 1f);
+            ReapingExpectPlatform.setScale((VillagerEntity) (Object) this, 1f);
+        }
+    }
+
+    @Inject(
+            method = "interactMob",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void reapingmod$reapVillager(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        if (ReapingHelper.tryReap(this, player.getStackInHand(hand)) == ActionResult.SUCCESS) {
+            cir.setReturnValue(ActionResult.SUCCESS);
         }
     }
 
     @Override
     public ActionResult reapingmod$onReaped(ItemStack toolStack) {
-        if (!this.reapingmod$remainSmall && ReapingExpectPlatform.getConfig().reapPlayers()) {
+        if (!this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
-            ReapingExpectPlatform.setScale((PlayerEntity) (Object) this, 0.45f);
+            ReapingExpectPlatform.setScale((VillagerEntity) (Object) this, 0.45f);
 
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
