@@ -2,12 +2,12 @@
 
 ### Features
 
-- Automatically publish the mod on Curseforge and GitHub.
+- No features were added in this update.
 
 ### Fixes
 
-- Specify Cloth Config dependencies on both Forge and Fabric for friendlier error messages.
+- No bugs were fixed in this update.
 
-Closed Issues: #3
+Closed Issues: None.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.0...2.1.1)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/...)
