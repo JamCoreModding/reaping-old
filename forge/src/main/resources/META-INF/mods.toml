@@ -33,3 +33,10 @@ mandatory = true
 versionRange = "[4.2.50,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.reaping]]
+modId = "cloth-config"
+mandatory = true
+versionRange = ""
+ordering = "AFTER"
+side = "BOTH"

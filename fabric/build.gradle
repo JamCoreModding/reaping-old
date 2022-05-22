@@ -1,5 +1,8 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GrDeprecatedAPIUsage
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 architectury {
@@ -68,16 +71,38 @@ components.java {
     }
 }
 
-publishing {
-    publications {
-        mavenFabric(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
-    }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
+curseforge {
+    if (System.getenv("CURSEFORGE_API_KEY") != null) {
+        println("Enabling Curseforge publishing for Fabric")
+        apiKey = System.getenv("CURSEFORGE_API_KEY")
+
+        project {
+            id = "485532"
+            changelogType = "markdown"
+            releaseType = "release"
+            changelog = rootProject.file("CHANGELOG.md")
+
+            mainArtifact(remapJar.archiveFile) {
+                displayName = rootProject.property("release_name").replace("\$LOADER", "Fabric")
+            }
+
+            afterEvaluate {
+                uploadTask.dependsOn("build")
+            }
+
+            addGameVersion "Fabric"
+            addGameVersion "1.18.2"
+
+            relations {
+                requiredDependency "fabric-api"
+                requiredDependency "architectury-api"
+                requiredDependency "cloth-config"
+            }
+        }
+
+        options {
+            forgeGradleIntegration = false
+        }
     }
 }

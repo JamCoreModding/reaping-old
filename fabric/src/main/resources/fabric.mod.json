@@ -28,7 +28,9 @@
     "reaping-fabriclike.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.18.2",
-    "architectury": ">=4.2.50"
+    "fabricloader": "*",
+    "fabric": "*",
+    "architectury": ">=4.2.50",
+    "cloth-config2": "*"
   }
 }

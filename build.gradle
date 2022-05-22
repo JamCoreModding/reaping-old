@@ -1,8 +1,10 @@
+//file:noinspection GroovyAssignabilityCheck
 plugins {
     id "org.cadixdev.licenser" version "0.6.1"
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
     id "org.quiltmc.quilt-mappings-on-loom" version "4.2.0"
+    id "com.github.breadmoirai.github-release" version "2.2.12"
 }
 
 architectury {
@@ -42,10 +44,42 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
+        //noinspection GroovyAccessibility
         options.release = 17
     }
 
     java {
         withSourcesJar()
+    }
+}
+
+githubRelease {
+    if (System.getenv("GITHUB_TOKEN") != null) {
+        println("Enabled GitHub release publishing")
+
+        token = System.getenv("GITHUB_TOKEN")
+        owner = "JamCoreModding"
+        repo = "Reaping"
+        targetCommitish = "main"
+        tagName = rootProject.property("mod_version")
+        releaseName = rootProject.property("release_name").replace("\$LOADER", "Fabric + Forge")
+        body = rootProject.file("CHANGELOG.md").getText() +
+                "\n\n Release files can be found on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/reaping/files)"
+        prerelease = false
+        draft = true
+    }
+}
+
+tasks.named("publish") {
+//    dependsOn "fabric:curseforge"
+//    dependsOn "forge:curseforge"
+    dependsOn "githubRelease"
+
+    doLast {
+        println("Clearing CHANGELOG.md")
+
+//        rootProject.file("CHANGELOG.md").write(
+//                rootProject.file("CHANGELOG_TEMPLATE.md").getText()
+//        )
     }
 }
