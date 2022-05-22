@@ -78,7 +78,7 @@ public class ReapingMod {
                                 .group(ItemGroup.FOOD)
                                 .food(new FoodComponent.Builder()
                                         .meat().alwaysEdible()
-                                        .hunger(8).saturationModifier(10f)
+                                        .hunger(8).saturationModifier(1.8f)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 25 * 20), 1)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 35 * 20), 1)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 10 * 20), 1)

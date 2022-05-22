@@ -1,13 +1,11 @@
 ## Changelog
 
-### Features
-
-- No features were added in this update.
+Oops! Forgot to put this in 2.1.1.
 
 ### Fixes
 
-- No bugs were fixed in this update.
+- Fix saturation of suspicious meat being 10x more than it should be.
 
 Closed Issues: None.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/...)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.1...2.1.2)
