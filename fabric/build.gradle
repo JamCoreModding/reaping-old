@@ -34,10 +34,22 @@ dependencies {
 }
 
 processResources {
+    inputs.property "id", rootProject.property("id")
     inputs.property "version", project.version
+    inputs.property "name", rootProject.property("name")
+    inputs.property "description", rootProject.property("description")
+    inputs.property "author", rootProject.property("author")
+    inputs.property "github_url", rootProject.property("github_url")
+    inputs.property "license", rootProject.property("license")
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "id": rootProject.property("id"),
+                "version": project.version,
+                "name": rootProject.property("name"),
+                "description": rootProject.property("description"),
+                "author": rootProject.property("author"),
+                "github_url": rootProject.property("github_url"),
+                "license": rootProject.property("license")
     }
 }
 

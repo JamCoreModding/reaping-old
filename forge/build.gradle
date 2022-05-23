@@ -28,10 +28,22 @@ dependencies {
 }
 
 processResources {
+    inputs.property "github_url", rootProject.property("github_url")
+    inputs.property "license", rootProject.property("license")
+    inputs.property "id", rootProject.property("id")
     inputs.property "version", project.version
+    inputs.property "name", rootProject.property("name")
+    inputs.property "author", rootProject.property("author")
+    inputs.property "description", rootProject.property("description")
 
     filesMatching("META-INF/mods.toml") {
-        expand "version": project.version
+        expand "github_url": rootProject.property("github_url"),
+                "license": rootProject.property("license"),
+                "id": rootProject.property("id"),
+                "version": project.version,
+                "name": rootProject.property("name"),
+                "author": rootProject.property("author"),
+                "description": rootProject.property("description")
     }
 }
 

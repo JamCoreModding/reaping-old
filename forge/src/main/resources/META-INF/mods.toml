@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
-issueTrackerURL = "https://github.com/JamCoreModding/Reaping/issues"
-license = "MIT"
+issueTrackerURL = "${github_url}/issues"
+license = "${license}"
 
 [[mods]]
-modId = "reaping"
+modId = "${id}"
 version = "${version}"
-displayName = "Reaping"
-authors = "Jamalam"
+displayName = "${name}"
+authors = "${author}"
 description = '''
-Harvest your animals in the most cursed way possible.
+${description}
 '''
 logoFile = "icon.png"
 
