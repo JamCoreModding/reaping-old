@@ -2,12 +2,12 @@
 
 ### Features
 
-- Keep metadata all in `gradle.properties`.
+- No features were added in this update.
 
 ### Fixes
 
-- Fix typo in Cloth Config dependency on forge.
+- No bugs were fixed in this update.
 
 Closed Issues: None.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.2...2.1.3)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/...)
