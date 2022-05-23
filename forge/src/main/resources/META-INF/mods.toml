@@ -35,7 +35,7 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.reaping]]
-modId = "cloth-config"
+modId = "cloth_config"
 mandatory = true
 versionRange = ""
 ordering = "AFTER"
