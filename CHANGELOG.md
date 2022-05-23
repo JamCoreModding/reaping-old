@@ -1,13 +1,9 @@
 ## Changelog
 
-### Features
-
-- No features were added in this update.
-
 ### Fixes
 
-- No bugs were fixed in this update.
+- Attempt to fix more Cloth Config dependency issues
 
 Closed Issues: None.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/...)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.3...2.1.4)

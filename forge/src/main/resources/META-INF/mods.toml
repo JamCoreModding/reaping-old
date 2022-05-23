@@ -37,6 +37,3 @@ side = "BOTH"
 [[dependencies.reaping]]
 modId = "cloth_config"
 mandatory = true
-versionRange = ""
-ordering = "AFTER"
-side = "BOTH"
