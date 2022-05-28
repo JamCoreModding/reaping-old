@@ -2,12 +2,13 @@
 
 ### Features
 
-- No features were added in this update.
+- Add villager and wandering trader trades.
 
 ### Fixes
 
-- No bugs were fixed in this update.
+- Fix bug with Cloth Config dependency on Forge.
+- Entities that are dying (i.e. playing the death animation) can no longer be reaped.
 
-Closed Issues: None.
+Closed Issues: #4.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/...)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.4...2.0.0)
