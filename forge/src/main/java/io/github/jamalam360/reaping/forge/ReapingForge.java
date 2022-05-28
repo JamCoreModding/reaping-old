@@ -20,4 +20,6 @@ public class ReapingForge {
                 () -> new ConfigGuiHandler.ConfigGuiFactory((minecraftClient, screen) -> AutoConfig.getConfigScreen(ReapingConfig.class, screen).get())
         );
     }
+
+    
 }
