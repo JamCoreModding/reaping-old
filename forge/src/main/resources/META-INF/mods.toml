@@ -6,7 +6,7 @@ license = "${license}"
 [[mods]]
 modId = "${id}"
 version = "${version}"
-displayName = "${name}"
+displayName = "Reaping"
 authors = "${author}"
 description = '''
 ${description}

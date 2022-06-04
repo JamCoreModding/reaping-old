@@ -1,0 +1,15 @@
+{
+  "profession": "minecraft:wandering_trader",
+  "replace": false,
+  "offers": {
+    "rare":  [
+      {
+        "type": "minecraft:sell_item",
+        "item": "reaping:human_meat",
+        "price": 7,
+        "max_uses": 3,
+        "experience": 30
+      }
+    ]
+  }
+}

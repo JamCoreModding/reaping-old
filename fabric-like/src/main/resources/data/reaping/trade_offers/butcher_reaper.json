@@ -1,0 +1,24 @@
+{
+  "profession": "minecraft:butcher",
+  "replace": false,
+  "offers": {
+    "apprentice": [
+      {
+        "type": "minecraft:sell_item",
+        "item": "reaping:iron_reaper",
+        "price": 3,
+        "max_uses": 5,
+        "experience": 10
+      }
+    ],
+    "master":  [
+      {
+        "type": "minecraft:sell_item",
+        "item": "reaping:diamond_reaper",
+        "price": 13,
+        "max_uses": 3,
+        "experience": 30
+      }
+    ]
+  }
+}
