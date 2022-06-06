@@ -82,7 +82,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.HUMAN_MEAT);
+            this.dropItem(ReapingMod.HUMAN_MEAT.get());
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 

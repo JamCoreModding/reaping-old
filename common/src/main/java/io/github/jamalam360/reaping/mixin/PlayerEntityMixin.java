@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,18 +24,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * @author Jamalam360
  */
 
-@SuppressWarnings("ConstantConditions")
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements CustomReapableEntityDuck {
-    @Shadow
-    public abstract boolean damage(DamageSource source, float amount);
-
     private boolean reapingmod$remainSmall = false;
     private int reapingmod$remainingSmallTicks = 0;
-
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
+
+    @Shadow
+    public abstract boolean damage(DamageSource source, float amount);
 
     @Inject(
             method = "writeCustomDataToNbt",
@@ -75,7 +72,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.HUMAN_MEAT);
+            this.dropItem(ReapingMod.HUMAN_MEAT.get());
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 

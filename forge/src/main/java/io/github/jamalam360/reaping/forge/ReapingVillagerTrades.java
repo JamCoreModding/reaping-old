@@ -15,14 +15,14 @@ public class ReapingVillagerTrades {
         if (event.getType() == VillagerProfession.BUTCHER) {
             event.getTrades().get(2).add((entity, random) -> new BasicItemListing(
                     3,
-                    ReapingMod.IRON_REAPER.getDefaultStack(),
+                    ReapingMod.IRON_REAPER.get().getDefaultStack(),
                     5,
                     10
             ).create(entity, random));
 
             event.getTrades().get(5).add((entity, random) -> new BasicItemListing(
                     13,
-                    ReapingMod.DIAMOND_REAPER.getDefaultStack(),
+                    ReapingMod.DIAMOND_REAPER.get().getDefaultStack(),
                     3,
                     30
             ).create(entity, random));
@@ -33,7 +33,7 @@ public class ReapingVillagerTrades {
     public static void addReaperTradeWanderingTrader(WandererTradesEvent event) {
         event.getRareTrades().add((entity, random) -> new BasicItemListing(
                 7,
-                ReapingMod.HUMAN_MEAT.getDefaultStack(),
+                ReapingMod.HUMAN_MEAT.get().getDefaultStack(),
                 3,
                 30
         ).create(entity, random));

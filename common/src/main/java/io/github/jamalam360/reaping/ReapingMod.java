@@ -1,6 +1,7 @@
 package io.github.jamalam360.reaping;
 
 import dev.architectury.registry.registries.DeferredRegister;
+import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.config.ReapingConfig;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.logic.ReapingToolDispenserBehavior;
@@ -26,11 +27,11 @@ public class ReapingMod {
 
     public static final Identifier USE_REAPER_TOOL_STAT = new Identifier(MOD_ID, "use_reaper_tool");
 
-    public static final ReaperItem IRON_REAPER;
-    public static final ReaperItem GOLD_REAPER;
-    public static final ReaperItem DIAMOND_REAPER;
-    public static final ReaperItem NETHERITE_REAPER;
-    public static final Item HUMAN_MEAT;
+    public static final RegistrySupplier<ReaperItem> IRON_REAPER;
+    public static final RegistrySupplier<ReaperItem> GOLD_REAPER;
+    public static final RegistrySupplier<ReaperItem> DIAMOND_REAPER;
+    public static final RegistrySupplier<ReaperItem> NETHERITE_REAPER;
+    public static final RegistrySupplier<Item> HUMAN_MEAT;
 
     public static void init() {
         log(Level.INFO, "Initializing Reaping Mod...");
@@ -72,10 +73,10 @@ public class ReapingMod {
     static {
         STATS.register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
 
-        IRON_REAPER = ITEMS.register(new Identifier(MOD_ID, "iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON)).get();
-        GOLD_REAPER = ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD)).get();
-        DIAMOND_REAPER = ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND)).get();
-        NETHERITE_REAPER = ITEMS.register(new Identifier(MOD_ID, "netherite_reaping_tool"), () -> getReapingTool(ToolMaterials.NETHERITE)).get();
+        IRON_REAPER = ITEMS.register(new Identifier(MOD_ID, "iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON));
+        GOLD_REAPER = ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD));
+        DIAMOND_REAPER = ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND));
+        NETHERITE_REAPER = ITEMS.register(new Identifier(MOD_ID, "netherite_reaping_tool"), () -> getReapingTool(ToolMaterials.NETHERITE));
 
         HUMAN_MEAT = ITEMS.register(
                 new Identifier(MOD_ID, "human_meat"),
@@ -91,6 +92,6 @@ public class ReapingMod {
                                         .build()
                                 )
                 )
-        ).get();
+        );
     }
 }
