@@ -1,9 +1,9 @@
 package io.github.jamalam360.reaping.mixin;
 
-import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
-import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -14,7 +14,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -83,7 +82,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.ITEMS.getRegistrar().get(new Identifier(ReapingMod.MOD_ID, "human_meat")));
+            this.dropItem(ReapingMod.HUMAN_MEAT);
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 

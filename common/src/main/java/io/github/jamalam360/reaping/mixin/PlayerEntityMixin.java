@@ -75,7 +75,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.ITEMS.getRegistrar().get(new Identifier(ReapingMod.MOD_ID, "human_meat")));
+            this.dropItem(ReapingMod.HUMAN_MEAT);
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
