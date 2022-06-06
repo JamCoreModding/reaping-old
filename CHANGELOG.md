@@ -6,7 +6,7 @@
 
 ### Fixes
 
-- Fix bug with Cloth Config dependency on Forge.
+- Fix bug with Cloth Config dependency on Forge and Fabric.
 - Entities that are dying (i.e. playing the death animation) can no longer be reaped.
 
 Closed Issues: #4.

@@ -31,6 +31,6 @@
     "fabricloader": "*",
     "fabric": "*",
     "architectury": ">=4.2.50",
-    "cloth-config2": "*"
+    "cloth-config": "*"
   }
 }
