@@ -1,6 +1,6 @@
 ## Changelog
 
-This release _**will not be backported to 1.18.2!**_ Don't ask!
+This release contains a lot of balance, and polish features, but _**will not be backported to 1.18.2!**_ Don't ask!
 
 ### Features
 
