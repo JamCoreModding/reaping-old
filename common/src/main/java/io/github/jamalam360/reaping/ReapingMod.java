@@ -1,5 +1,6 @@
 package io.github.jamalam360.reaping;
 
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.config.ReapingConfig;
@@ -16,11 +17,13 @@ import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.Random;
 
 public class ReapingMod {
     public static final String MOD_ID = "reaping";
     public static final String MOD_NAME = "Reaping";
-    public static Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Random RANDOM = new Random();
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_KEY);
     public static final DeferredRegister<Identifier> STATS = DeferredRegister.create(MOD_ID, Registry.CUSTOM_STAT_KEY);
@@ -41,7 +44,7 @@ public class ReapingMod {
 
         AutoConfig.register(ReapingConfig.class, GsonConfigSerializer::new);
 
-        if (ReapingExpectPlatform.isModLoaded("harvest_scythes")) {
+        if (Platform.isModLoaded("harvest_scythes")) {
             log(Level.INFO, "Enabling Harvest Scythe compatibility...");
 
             try {
@@ -59,8 +62,8 @@ public class ReapingMod {
         return new Item.Settings().group(ItemGroup.TOOLS).maxCount(1);
     }
 
-    private static ReaperItem getReapingTool(ToolMaterial material) {
-        ReaperItem item = new ReaperItem(reaperBaseProperties(), material);
+    private static ReaperItem getReapingTool(ToolMaterials material, float sharpnessModifier) {
+        ReaperItem item = new ReaperItem(reaperBaseProperties(), material, sharpnessModifier);
         DispenserBlock.registerBehavior(item, new ReapingToolDispenserBehavior());
         ReapingHelper.registerValidReapingTool(item.getClass());
         return item;
@@ -73,10 +76,10 @@ public class ReapingMod {
     static {
         STATS.register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
 
-        IRON_REAPER = ITEMS.register(new Identifier(MOD_ID, "iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON));
-        GOLD_REAPER = ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD));
-        DIAMOND_REAPER = ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND));
-        NETHERITE_REAPER = ITEMS.register(new Identifier(MOD_ID, "netherite_reaping_tool"), () -> getReapingTool(ToolMaterials.NETHERITE));
+        IRON_REAPER = ITEMS.register(new Identifier(MOD_ID, "iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON, 1.0F));
+        GOLD_REAPER = ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD, 0.75F));
+        DIAMOND_REAPER = ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND, 0.4F));
+        NETHERITE_REAPER = ITEMS.register(new Identifier(MOD_ID, "netherite_reaping_tool"), () -> getReapingTool(ToolMaterials.NETHERITE, 0.2F));
 
         HUMAN_MEAT = ITEMS.register(
                 new Identifier(MOD_ID, "human_meat"),
@@ -85,7 +88,7 @@ public class ReapingMod {
                                 .group(ItemGroup.FOOD)
                                 .food(new FoodComponent.Builder()
                                         .meat().alwaysEdible()
-                                        .hunger(8).saturationModifier(1.8f)
+                                        .hunger(7).saturationModifier(1.4f)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 25 * 20), 1)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 35 * 20), 1)
                                         .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 10 * 20), 1)

@@ -45,7 +45,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             )
     )
     public boolean reaping$reapEntitiesOnSweep(LivingEntity instance, DamageSource source, float amount) {
-        if (ReapingHelper.tryReap(instance, this.getStackInHand(Hand.MAIN_HAND)) == ActionResult.SUCCESS) {
+        if (ReapingHelper.tryReap((PlayerEntity) (Object) this, instance, this.getStackInHand(Hand.MAIN_HAND)) == ActionResult.SUCCESS) {
             return true;
         } else {
             return instance.damage(source, amount);

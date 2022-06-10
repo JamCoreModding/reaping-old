@@ -9,7 +9,10 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.Vanishable;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -17,25 +20,22 @@ import net.minecraft.util.Hand;
  * @author Jamalam360
  */
 public class ReaperItem extends Item implements Vanishable {
-    private final ToolMaterial TOOL_MATERIAL;
+    public final float sharpnessModifier;
+    private final ToolMaterials toolMaterial;
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-    public ReaperItem(Settings settings, ToolMaterial material) {
+    public ReaperItem(Settings settings, ToolMaterials material, float sharpnessModifier) {
         super(settings.maxDamage(material.getDurability()));
-        this.TOOL_MATERIAL = material;
+        this.sharpnessModifier = sharpnessModifier;
+        this.toolMaterial = material;
 
-        float attackDamage;
-        if (material == ToolMaterials.IRON) {
-            attackDamage = 4.0f;
-        } else if (material == ToolMaterials.GOLD) {
-            attackDamage = 5.0f;
-        } else if (material == ToolMaterials.DIAMOND) {
-            attackDamage = 6.0f;
-        } else if (material == ToolMaterials.NETHERITE) {
-            attackDamage = 7.0f;
-        } else {
-            attackDamage = 1.0f; // Will never happen
-        }
+        float attackDamage = switch (material) {
+            case IRON -> 3.4f;
+            case GOLD -> 4.3f;
+            case DIAMOND -> 5.2f;
+            case NETHERITE -> 6.8f;
+            default -> throw new IllegalArgumentException("Invalid Reaper tool material: " + material.name());
+        };
 
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", attackDamage, EntityAttributeModifier.Operation.ADDITION));
@@ -50,7 +50,7 @@ public class ReaperItem extends Item implements Vanishable {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if (ReapingHelper.tryReap(entity, stack) == ActionResult.SUCCESS) {
+        if (ReapingHelper.tryReap(user, entity, stack) == ActionResult.SUCCESS) {
             user.getStackInHand(hand).damage(1, user, (p) -> p.sendToolBreakStatus(hand));
             user.increaseStat(ReapingMod.USE_REAPER_TOOL_STAT, 1);
             return ActionResult.SUCCESS;
@@ -61,6 +61,16 @@ public class ReaperItem extends Item implements Vanishable {
 
     @Override
     public int getEnchantability() {
-        return TOOL_MATERIAL.getEnchantability();
+        return toolMaterial.getEnchantability();
+    }
+
+    public int getCooldownTicks() {
+        return switch (toolMaterial) {
+            case IRON -> 45;
+            case GOLD -> 18;
+            case DIAMOND -> 28;
+            case NETHERITE -> 23;
+            default -> throw new IllegalArgumentException("Invalid Reaper tool material: " + toolMaterial.name());
+        };
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -71,23 +72,23 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
             cancellable = true
     )
     public void reapingmod$reapVillager(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (ReapingHelper.tryReap(this, player.getStackInHand(hand)) == ActionResult.SUCCESS) {
+        if (ReapingHelper.tryReap(player, this, player.getStackInHand(hand)) == ActionResult.SUCCESS) {
             cir.setReturnValue(ActionResult.SUCCESS);
         }
     }
 
     @Override
-    public ActionResult reapingmod$onReaped(ItemStack toolStack) {
+    public ActionResult reapingmod$onReaped(@Nullable PlayerEntity user, ItemStack toolStack) {
         if (!this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = true;
-            this.reapingmod$remainingSmallTicks = this.world.random.nextInt(50 * 20, 120 * 20);
+            this.reapingmod$remainingSmallTicks =  ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
             this.dropItem(ReapingMod.HUMAN_MEAT.get());
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
-            if (toolStack.getHolder() != null) {
-                this.damage(DamageSource.player((PlayerEntity) toolStack.getHolder()), 1.0f);
+            if (user != null) {
+                this.damage(DamageSource.player(user), 1.0f);
             } else {
                 this.damage(DamageSource.GENERIC, 1.0f);
             }

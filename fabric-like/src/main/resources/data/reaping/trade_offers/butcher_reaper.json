@@ -5,7 +5,7 @@
     "apprentice": [
       {
         "type": "minecraft:sell_item",
-        "item": "reaping:iron_reaper",
+        "item": "reaping:iron_reaping_tool",
         "price": 3,
         "max_uses": 5,
         "experience": 10
@@ -14,7 +14,7 @@
     "master":  [
       {
         "type": "minecraft:sell_item",
-        "item": "reaping:diamond_reaper",
+        "item": "reaping:diamond_reaping_tool",
         "price": 13,
         "max_uses": 3,
         "experience": 30

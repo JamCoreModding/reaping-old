@@ -7,16 +7,6 @@ import net.minecraft.loot.context.LootContext;
 
 public class ReapingExpectPlatform {
     @ExpectPlatform
-    public static boolean isModLoaded(String modId) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
-    public static LootContext.Builder getLootContextBuilder(LivingEntity entity, boolean causedByPlayer, DamageSource source) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static void setScale(LivingEntity entity, float scale) {
         throw new AssertionError();
     }

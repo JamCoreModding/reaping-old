@@ -40,7 +40,7 @@ public class ReapingToolDispenserBehavior extends FallibleItemDispenserBehavior 
         List<LivingEntity> list = world.getEntitiesByClass(LivingEntity.class, new Box(pos), EntityPredicates.EXCEPT_SPECTATOR);
 
         for (LivingEntity livingEntity : list) {
-            return ReapingHelper.tryReap(livingEntity, stack) == ActionResult.SUCCESS;
+            return ReapingHelper.tryReap(null, livingEntity, stack) == ActionResult.SUCCESS;
         }
 
         return false;
