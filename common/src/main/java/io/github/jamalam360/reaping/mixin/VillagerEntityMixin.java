@@ -4,12 +4,15 @@ import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -79,11 +82,13 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
 
     @Override
     public ActionResult reapingmod$onReaped(@Nullable PlayerEntity user, ItemStack toolStack) {
+        int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, toolStack);
+
         if (!this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks =  ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.HUMAN_MEAT.get());
+            this.dropStack(new ItemStack(ReapingMod.HUMAN_MEAT.get(), lootingLvl == 0 ? 1 : this.world.random.nextInt(lootingLvl) + 1));
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
@@ -92,6 +97,12 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
             } else {
                 this.damage(DamageSource.GENERIC, 1.0f);
             }
+
+            return ActionResult.SUCCESS;
+        } else if (!this.isDead()) {
+            this.kill();
+            this.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1.0f, 1.0f);
+            this.dropStack(new ItemStack(Items.BONE, lootingLvl == 0 ? 1 : this.world.random.nextInt(lootingLvl) + 1));
 
             return ActionResult.SUCCESS;
         } else {

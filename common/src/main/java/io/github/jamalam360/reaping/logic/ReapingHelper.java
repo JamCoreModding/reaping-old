@@ -22,7 +22,6 @@ import net.minecraft.util.ActionResult;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author Jamalam360

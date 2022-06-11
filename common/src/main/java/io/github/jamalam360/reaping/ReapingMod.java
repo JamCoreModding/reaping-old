@@ -8,9 +8,13 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.config.ReapingConfig;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.logic.ReapingToolDispenserBehavior;
+import io.github.jamalam360.reaping.mixin.DefaultAttributeRegistryAccessor;
+import io.github.jamalam360.reaping.pillager.ReapingPillagerEntity;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -31,14 +35,17 @@ public class ReapingMod {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_KEY);
     public static final DeferredRegister<Identifier> STATS = DeferredRegister.create(MOD_ID, Registry.CUSTOM_STAT_KEY);
-
-    public static final Identifier USE_REAPER_TOOL_STAT = new Identifier(MOD_ID, "use_reaper_tool");
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(MOD_ID, Registry.ENTITY_TYPE_KEY);
 
     public static final RegistrySupplier<ReaperItem> IRON_REAPER;
     public static final RegistrySupplier<ReaperItem> GOLD_REAPER;
     public static final RegistrySupplier<ReaperItem> DIAMOND_REAPER;
     public static final RegistrySupplier<ReaperItem> NETHERITE_REAPER;
     public static final RegistrySupplier<Item> HUMAN_MEAT;
+
+    public static final Identifier USE_REAPER_TOOL_STAT = new Identifier(MOD_ID, "use_reaper_tool");
+
+    public static final RegistrySupplier<EntityType<ReapingPillagerEntity>> REAPING_PILLAGER_ENTITY_TYPE;
 
     public static void init() {
         log(Level.INFO, "Initializing Reaping Mod...");
@@ -47,6 +54,12 @@ public class ReapingMod {
 
         ITEMS.register();
         STATS.register();
+        ENTITY_TYPES.register();
+
+        DefaultAttributeRegistryAccessor.getRegistry().put(
+                REAPING_PILLAGER_ENTITY_TYPE.get(),
+                ReapingPillagerEntity.createReapingPillagerAttributes().build()
+        );
 
         TradeRegistry.registerVillagerTrade(
                 VillagerProfession.BUTCHER,
@@ -138,5 +151,15 @@ public class ReapingMod {
         );
 
         STATS.register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
+
+        REAPING_PILLAGER_ENTITY_TYPE = ENTITY_TYPES.register(
+                new Identifier(MOD_ID, "reaping_pillager"),
+                () -> EntityType.Builder.
+                        create(ReapingPillagerEntity::new, SpawnGroup.MONSTER)
+                        .spawnableFarFromPlayer()
+                        .setDimensions(0.6F, 1.95F)
+                        .maxTrackingRange(8)
+                        .build("reaping_pillager")
+        );
     }
 }

@@ -3,6 +3,7 @@
   "package": "io.github.jamalam360.reaping.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "DefaultAttributeRegistryAccessor",
     "ItemMixin",
     "PlayerEntityMixin",
     "VillagerEntityMixin"

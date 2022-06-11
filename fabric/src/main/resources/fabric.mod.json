@@ -19,6 +19,9 @@
     "main": [
       "io.github.jamalam360.reaping.fabric.ReapingFabric"
     ],
+    "client": [
+      "io.github.jamalam360.reaping.fabric.ReapingClientFabric"
+    ],
     "modmenu": [
       "io.github.jamalam360.reaping.fabriclike.ModMenuIntegration"
     ]
