@@ -1,6 +1,7 @@
 package io.github.jamalam360.reaping.logic;
 
 import io.github.jamalam360.reaping.ReaperItem;
+import io.github.jamalam360.reaping.ReapingMod;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -28,7 +29,6 @@ import java.util.Random;
  */
 public class ReapingHelper {
     public static final ArrayList<Class<?>> VALID_REAPING_TOOLS = new ArrayList<>();
-    private static final Random RANDOM = new Random();
 
     public static ActionResult tryReap(@Nullable PlayerEntity user, LivingEntity reapedEntity, ItemStack toolStack) {
         int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, toolStack);
@@ -80,7 +80,7 @@ public class ReapingHelper {
                 }
             }
 
-            if (RANDOM.nextDouble() <= chance) {
+            if (ReapingMod.RANDOM.nextDouble() <= chance) {
                 reapedEntity.kill();
             }
         }
@@ -106,7 +106,7 @@ public class ReapingHelper {
                 .optionalParameter(LootContextParameters.DIRECT_KILLER_ENTITY, source.getSource());
 
         int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, stack);
-        int rollTimes = lootingLvl == 0 ? 1 : RANDOM.nextInt(lootingLvl) + 1;
+        int rollTimes = lootingLvl == 0 ? 1 : entity.world.random.nextInt(lootingLvl) + 1;
 
         for (int i = 0; i < rollTimes; i++) {
             lootTable.generateLoot(builder.build(LootContextTypes.ENTITY), entity::dropStack);

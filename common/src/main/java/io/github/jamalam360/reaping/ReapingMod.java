@@ -1,6 +1,8 @@
 package io.github.jamalam360.reaping;
 
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.level.entity.trade.SimpleTrade;
+import dev.architectury.registry.level.entity.trade.TradeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.config.ReapingConfig;
@@ -14,9 +16,11 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.village.VillagerProfession;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.Random;
 
 public class ReapingMod {
@@ -39,10 +43,48 @@ public class ReapingMod {
     public static void init() {
         log(Level.INFO, "Initializing Reaping Mod...");
 
+        AutoConfig.register(ReapingConfig.class, GsonConfigSerializer::new);
+
         ITEMS.register();
         STATS.register();
 
-        AutoConfig.register(ReapingConfig.class, GsonConfigSerializer::new);
+        TradeRegistry.registerVillagerTrade(
+                VillagerProfession.BUTCHER,
+                2,
+                new SimpleTrade(
+                        new ItemStack(Items.EMERALD, 3),
+                        ItemStack.EMPTY,
+                        ReapingMod.IRON_REAPER.get().getDefaultStack(),
+                        5,
+                        10,
+                        1
+                )
+        );
+
+        TradeRegistry.registerVillagerTrade(
+                VillagerProfession.BUTCHER,
+                5,
+                new SimpleTrade(
+                        new ItemStack(Items.EMERALD, 13),
+                        ItemStack.EMPTY,
+                        ReapingMod.DIAMOND_REAPER.get().getDefaultStack(),
+                        3,
+                        30,
+                        1
+                )
+        );
+
+        TradeRegistry.registerTradeForWanderingTrader(
+                true,
+                new SimpleTrade(
+                        new ItemStack(Items.EMERALD, 7),
+                        ItemStack.EMPTY,
+                        ReapingMod.HUMAN_MEAT.get().getDefaultStack(),
+                        6,
+                        20,
+                        1
+                )
+        );
 
         if (Platform.isModLoaded("harvest_scythes")) {
             log(Level.INFO, "Enabling Harvest Scythe compatibility...");
@@ -74,8 +116,6 @@ public class ReapingMod {
     }
 
     static {
-        STATS.register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
-
         IRON_REAPER = ITEMS.register(new Identifier(MOD_ID, "iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON, 1.0F));
         GOLD_REAPER = ITEMS.register(new Identifier(MOD_ID, "gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD, 0.75F));
         DIAMOND_REAPER = ITEMS.register(new Identifier(MOD_ID, "diamond_reaping_tool"), () -> getReapingTool(ToolMaterials.DIAMOND, 0.4F));
@@ -96,5 +136,7 @@ public class ReapingMod {
                                 )
                 )
         );
+
+        STATS.register(USE_REAPER_TOOL_STAT, () -> USE_REAPER_TOOL_STAT);
     }
 }
