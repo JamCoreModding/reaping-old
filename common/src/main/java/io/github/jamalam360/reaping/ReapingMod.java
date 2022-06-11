@@ -1,15 +1,19 @@
 package io.github.jamalam360.reaping;
 
 import dev.architectury.platform.Platform;
+import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
+import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.level.entity.trade.SimpleTrade;
 import dev.architectury.registry.level.entity.trade.TradeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import dev.architectury.utils.Env;
+import dev.architectury.utils.EnvExecutor;
 import io.github.jamalam360.reaping.config.ReapingConfig;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.logic.ReapingToolDispenserBehavior;
-import io.github.jamalam360.reaping.mixin.DefaultAttributeRegistryAccessor;
 import io.github.jamalam360.reaping.pillager.ReapingPillagerEntity;
+import io.github.jamalam360.reaping.pillager.ReapingPillagerEntityRenderer;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.block.DispenserBlock;
@@ -56,9 +60,9 @@ public class ReapingMod {
         STATS.register();
         ENTITY_TYPES.register();
 
-        DefaultAttributeRegistryAccessor.getRegistry().put(
-                REAPING_PILLAGER_ENTITY_TYPE.get(),
-                ReapingPillagerEntity.createReapingPillagerAttributes().build()
+        EntityAttributeRegistry.register(
+                REAPING_PILLAGER_ENTITY_TYPE,
+                ReapingPillagerEntity::createReapingPillagerAttributes
         );
 
         TradeRegistry.registerVillagerTrade(
@@ -111,6 +115,8 @@ public class ReapingMod {
                 log(Level.WARN, "Failed to enable Harvest Scythe compatibility");
             }
         }
+
+        EnvExecutor.runInEnv(Env.CLIENT, () -> ReapingMod.Client::initClient);
     }
 
     private static Item.Settings reaperBaseProperties() {
@@ -161,5 +167,14 @@ public class ReapingMod {
                         .maxTrackingRange(8)
                         .build("reaping_pillager")
         );
+    }
+
+    public static class Client {
+        public static void initClient() {
+            EntityRendererRegistry.register(
+                    ReapingMod.REAPING_PILLAGER_ENTITY_TYPE,
+                    ReapingPillagerEntityRenderer::new
+            );
+        }
     }
 }

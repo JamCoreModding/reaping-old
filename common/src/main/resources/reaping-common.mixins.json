@@ -5,6 +5,7 @@
   "mixins": [
     "ItemMixin",
     "PlayerEntityMixin",
+    "RaidMixin",
     "VillagerEntityMixin"
   ],
   "injectors": {

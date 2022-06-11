@@ -1,6 +1,7 @@
 package io.github.jamalam360.reaping.pillager;
 
 import com.google.common.collect.Maps;
+import dev.architectury.networking.NetworkManager;
 import io.github.jamalam360.reaping.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
@@ -25,9 +26,11 @@ import net.minecraft.item.BannerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
@@ -47,10 +50,11 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         super(entityType, world);
     }
 
-    protected void initGoals() {
+    public void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(2, new PatrolApproachGoal(this, 10.0F));
+        this.goalSelector.add(3, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 15.0F, 1.0F));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 15.0F));
@@ -147,6 +151,7 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
 
             this.applyDamageEffects(this, target);
             this.onAttacking(target);
+            this.swingHand(Hand.MAIN_HAND);
         }
 
         return result == ActionResult.SUCCESS;
@@ -226,5 +231,15 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
 
     public SoundEvent getCelebratingSound() {
         return SoundEvents.ENTITY_PILLAGER_CELEBRATE;
+    }
+
+    @Override
+    public State getState() {
+        return this.isCelebrating() ? State.CELEBRATING : State.ATTACKING;
+    }
+
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return NetworkManager.createAddEntityPacket(this);
     }
 }
