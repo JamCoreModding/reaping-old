@@ -3,6 +3,7 @@ package io.github.jamalam360.reaping.pillager;
 import com.google.common.collect.Maps;
 import io.github.jamalam360.reaping.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.logic.ReapingHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -14,7 +15,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.IllagerEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PillagerEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +27,9 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.village.raid.Raid;
 import net.minecraft.world.*;
@@ -117,6 +119,37 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
             }
         }
 
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        if (!(this.getMainHandStack().getItem() instanceof ReaperItem)
+                || !(target instanceof LivingEntity)) return super.tryAttack(target);
+
+        float g = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_KNOCKBACK) + (float) EnchantmentHelper.getKnockback(this);
+
+        int i = EnchantmentHelper.getFireAspect(this);
+        if (i > 0) {
+            target.setOnFireFor(i * 4);
+        }
+
+        ActionResult result = ReapingHelper.tryReap(null, (LivingEntity) target, this.getMainHandStack());
+        if (result == ActionResult.SUCCESS) {
+            if (g > 0.0F) {
+                ((LivingEntity) target)
+                        .takeKnockback(
+                                g * 0.5F,
+                                MathHelper.sin(this.getYaw() * (float) (Math.PI / 180.0)),
+                                -MathHelper.cos(this.getYaw() * (float) (Math.PI / 180.0))
+                        );
+                this.setVelocity(this.getVelocity().multiply(0.6, 1.0, 0.6));
+            }
+
+            this.applyDamageEffects(this, target);
+            this.onAttacking(target);
+        }
+
+        return result == ActionResult.SUCCESS;
     }
 
     public boolean isTeammate(Entity other) {
