@@ -3,6 +3,7 @@ package io.github.jamalam360.reaping;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
+import io.github.jamalam360.reaping.registry.ReapingStats;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -52,7 +53,7 @@ public class ReaperItem extends Item implements Vanishable {
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (ReapingHelper.tryReap(user, entity, stack) == ActionResult.SUCCESS) {
             user.getStackInHand(hand).damage(1, user, (p) -> p.sendToolBreakStatus(hand));
-            user.increaseStat(ReapingMod.USE_REAPER_TOOL_STAT, 1);
+            user.increaseStat(ReapingStats.USE_REAPER_TOOL_STAT, 1);
             return ActionResult.SUCCESS;
         } else {
             return ActionResult.PASS;

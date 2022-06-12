@@ -4,6 +4,7 @@ import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
+import io.github.jamalam360.reaping.registry.ReapingItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -88,7 +89,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks =  ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
-            this.dropStack(new ItemStack(ReapingMod.HUMAN_MEAT.get(), lootingLvl == 0 ? 1 : this.world.random.nextInt(lootingLvl) + 1));
+            this.dropStack(new ItemStack(ReapingItems.HUMAN_MEAT.get(), lootingLvl == 0 ? 1 : this.world.random.nextInt(lootingLvl) + 1));
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 

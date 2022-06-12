@@ -1,6 +1,6 @@
 package io.github.jamalam360.reaping.mixin;
 
-import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.registry.ReapingEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.raid.RaiderEntity;
@@ -25,7 +25,7 @@ public class RaidMixin {
     )
     public Entity reaping$insertReapingPillager(EntityType<? extends RaiderEntity> instance, World world) {
         if (instance == EntityType.PILLAGER && world.random.nextDouble() < 0.35D) {
-            return ReapingMod.REAPING_PILLAGER_ENTITY_TYPE.get().create(world);
+            return ReapingEntities.REAPING_PILLAGER.get().create(world);
         } else {
             return instance.create(world);
         }

@@ -5,6 +5,8 @@ import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.config.ReapingConfig;
 import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
+import io.github.jamalam360.reaping.registry.ReapingEnchantments;
+import io.github.jamalam360.reaping.registry.ReapingItems;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -80,7 +82,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             this.reapingmod$remainSmall = true;
             this.reapingmod$remainingSmallTicks = ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
-            this.dropItem(ReapingMod.HUMAN_MEAT.get());
+            this.dropItem(ReapingItems.HUMAN_MEAT.get());
             ReapingExpectPlatform.setScale(this, 0.45f);
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, 1.0f);
 
@@ -90,7 +92,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
                 this.damage(DamageSource.GENERIC, 1.0f);
             }
 
-            if (EnchantmentHelper.getLevel(ReapingMod.EXECUTIONER.get(), toolStack) > 0) {
+            if (EnchantmentHelper.getLevel(ReapingEnchantments.EXECUTIONER.get(), toolStack) > 0) {
                 if (this.world.random.nextDouble() < 0.15D) {
                     ItemStack stack = new ItemStack(Items.PLAYER_HEAD);
 
