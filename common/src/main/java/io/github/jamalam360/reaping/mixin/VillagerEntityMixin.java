@@ -87,7 +87,7 @@ public abstract class VillagerEntityMixin extends MerchantEntity implements Cust
 
         if (!this.reapingmod$remainSmall) {
             this.reapingmod$remainSmall = true;
-            this.reapingmod$remainingSmallTicks =  ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
+            this.reapingmod$remainingSmallTicks = ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
             this.dropStack(new ItemStack(ReapingItems.HUMAN_MEAT.get(), lootingLvl == 0 ? 1 : this.world.random.nextInt(lootingLvl) + 1));
             ReapingExpectPlatform.setScale(this, 0.45f);

@@ -10,7 +10,9 @@
     "version": "${version}",
     "name": "Reaping",
     "description": "Harvest your animals in the most cursed way possible.",
-    "authors": ["Jamalam"],
+    "authors": [
+      "Jamalam"
+    ],
     "contact": {
       "homepage": "https://www.curseforge.com/minecraft/mc-mods/reaping",
       "sources": "https://github.com/JamCoreModding/Reaping",

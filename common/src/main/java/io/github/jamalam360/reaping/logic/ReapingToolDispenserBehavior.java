@@ -22,6 +22,16 @@ public class ReapingToolDispenserBehavior extends FallibleItemDispenserBehavior 
     public ReapingToolDispenserBehavior() {
     }
 
+    private static boolean tryReapEntity(ServerWorld world, BlockPos pos, ItemStack stack) {
+        List<LivingEntity> list = world.getEntitiesByClass(LivingEntity.class, new Box(pos), EntityPredicates.EXCEPT_SPECTATOR);
+
+        for (LivingEntity livingEntity : list) {
+            return ReapingHelper.tryReap(null, livingEntity, stack) == ActionResult.SUCCESS;
+        }
+
+        return false;
+    }
+
     @Override
     public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
         if (AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().enableDispenserBehavior) {
@@ -34,15 +44,5 @@ public class ReapingToolDispenserBehavior extends FallibleItemDispenserBehavior 
         }
 
         return stack;
-    }
-
-    private static boolean tryReapEntity(ServerWorld world, BlockPos pos, ItemStack stack) {
-        List<LivingEntity> list = world.getEntitiesByClass(LivingEntity.class, new Box(pos), EntityPredicates.EXCEPT_SPECTATOR);
-
-        for (LivingEntity livingEntity : list) {
-            return ReapingHelper.tryReap(null, livingEntity, stack) == ActionResult.SUCCESS;
-        }
-
-        return false;
     }
 }

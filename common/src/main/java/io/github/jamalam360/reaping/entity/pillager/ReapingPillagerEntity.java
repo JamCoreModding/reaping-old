@@ -51,6 +51,14 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         super(entityType, world);
     }
 
+    public static DefaultAttributeContainer.Builder createReapingPillagerAttributes() {
+        return HostileEntity.createHostileAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.42F)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0F)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 44.0);
+    }
+
     public void initGoals() {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
@@ -64,14 +72,6 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         this.targetSelector.add(2, new TargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(3, new TargetGoal<>(this, MerchantEntity.class, false));
         this.targetSelector.add(3, new TargetGoal<>(this, IronGolemEntity.class, true));
-    }
-
-    public static DefaultAttributeContainer.Builder createReapingPillagerAttributes() {
-        return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.42F)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0F)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 44.0);
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {

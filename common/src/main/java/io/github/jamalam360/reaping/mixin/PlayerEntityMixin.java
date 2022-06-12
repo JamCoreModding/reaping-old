@@ -43,7 +43,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
     @Shadow
     public abstract boolean damage(DamageSource source, float amount);
 
-    @Shadow public abstract GameProfile getGameProfile();
+    @Shadow
+    public abstract GameProfile getGameProfile();
 
     @Inject(
             method = "writeCustomDataToNbt",

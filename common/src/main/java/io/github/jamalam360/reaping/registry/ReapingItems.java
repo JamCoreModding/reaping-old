@@ -27,17 +27,6 @@ public class ReapingItems {
     public static final RegistrySupplier<ReaperItem> NETHERITE_REAPER;
     public static final RegistrySupplier<Item> HUMAN_MEAT;
 
-    private static Item.Settings getReaperBaseProperties() {
-        return new Item.Settings().group(ItemGroup.TOOLS).maxCount(1);
-    }
-
-    private static ReaperItem getReapingTool(ToolMaterials material, float sharpnessModifier) {
-        ReaperItem item = new ReaperItem(getReaperBaseProperties(), material, sharpnessModifier);
-        DispenserBlock.registerBehavior(item, new ReapingToolDispenserBehavior());
-        ReapingHelper.registerValidReapingTool(item.getClass());
-        return item;
-    }
-
     static {
         IRON_REAPER = ITEMS.register(ReapingMod.id("iron_reaping_tool"), () -> getReapingTool(ToolMaterials.IRON, 1.0F));
         GOLD_REAPER = ITEMS.register(ReapingMod.id("gold_reaping_tool"), () -> getReapingTool(ToolMaterials.GOLD, 0.75F));
@@ -59,5 +48,16 @@ public class ReapingItems {
                                 )
                 )
         );
+    }
+
+    private static Item.Settings getReaperBaseProperties() {
+        return new Item.Settings().group(ItemGroup.TOOLS).maxCount(1);
+    }
+
+    private static ReaperItem getReapingTool(ToolMaterials material, float sharpnessModifier) {
+        ReaperItem item = new ReaperItem(getReaperBaseProperties(), material, sharpnessModifier);
+        DispenserBlock.registerBehavior(item, new ReapingToolDispenserBehavior());
+        ReapingHelper.registerValidReapingTool(item.getClass());
+        return item;
     }
 }
