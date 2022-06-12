@@ -3,8 +3,8 @@ package io.github.jamalam360.reaping.pillager;
 import com.google.common.collect.Maps;
 import dev.architectury.networking.NetworkManager;
 import io.github.jamalam360.reaping.ReaperItem;
-import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
+import io.github.jamalam360.reaping.registry.ReapingItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -107,10 +107,10 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         this.equipStack(
                 EquipmentSlot.MAINHAND,
                 (randomGenerator.nextBoolean() ?
-                        ReapingMod.IRON_REAPER.get() :
+                        ReapingItems.IRON_REAPER.get() :
                         randomGenerator.nextBoolean() ?
-                                ReapingMod.GOLD_REAPER.get() :
-                                ReapingMod.DIAMOND_REAPER.get()).getDefaultStack()
+                                ReapingItems.GOLD_REAPER.get() :
+                                ReapingItems.DIAMOND_REAPER.get()).getDefaultStack()
         );
     }
 
