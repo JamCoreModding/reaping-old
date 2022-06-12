@@ -4,11 +4,11 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "ItemMixin",
-    "PillagerSpawnerMixin",
+    "pillager.PillagerSpawnerMixin",
     "PlayerEntityMixin",
-    "RaidMixin",
+    "pillager.RaidMixin",
     "VillagerEntityMixin",
-    "VillagerHostilesSensorMixin"
+    "pillager.VillagerHostilesSensorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

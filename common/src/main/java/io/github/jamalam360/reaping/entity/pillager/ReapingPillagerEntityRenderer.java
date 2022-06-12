@@ -1,4 +1,4 @@
-package io.github.jamalam360.reaping.pillager;
+package io.github.jamalam360.reaping.entity.pillager;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.IllagerEntityRenderer;

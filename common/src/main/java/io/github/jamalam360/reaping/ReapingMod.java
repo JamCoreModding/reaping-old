@@ -4,7 +4,7 @@ import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.utils.Env;
 import dev.architectury.utils.EnvExecutor;
 import io.github.jamalam360.reaping.config.ReapingConfig;
-import io.github.jamalam360.reaping.pillager.ReapingPillagerEntityRenderer;
+import io.github.jamalam360.reaping.entity.pillager.ReapingPillagerEntityRenderer;
 import io.github.jamalam360.reaping.registry.*;
 import io.github.jamalam360.reaping.registry.compat.HarvestScythes;
 import me.shedaniel.autoconfig.AutoConfig;

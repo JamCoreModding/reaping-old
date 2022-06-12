@@ -1,4 +1,4 @@
-package io.github.jamalam360.reaping.mixin;
+package io.github.jamalam360.reaping.mixin.pillager;
 
 import io.github.jamalam360.reaping.registry.ReapingEntities;
 import net.minecraft.entity.Entity;

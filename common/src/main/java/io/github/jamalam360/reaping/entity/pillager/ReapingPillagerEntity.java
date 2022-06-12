@@ -1,4 +1,4 @@
-package io.github.jamalam360.reaping.pillager;
+package io.github.jamalam360.reaping.entity.pillager;
 
 import com.google.common.collect.Maps;
 import dev.architectury.networking.NetworkManager;

@@ -4,7 +4,7 @@ import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.ReapingMod;
-import io.github.jamalam360.reaping.pillager.ReapingPillagerEntity;
+import io.github.jamalam360.reaping.entity.pillager.ReapingPillagerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.registry.Registry;

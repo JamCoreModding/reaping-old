@@ -1,4 +1,4 @@
-package io.github.jamalam360.reaping.mixin;
+package io.github.jamalam360.reaping.mixin.pillager;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.jamalam360.reaping.registry.ReapingEntities;
