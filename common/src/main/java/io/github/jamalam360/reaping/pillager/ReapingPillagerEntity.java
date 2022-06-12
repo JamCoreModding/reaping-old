@@ -45,6 +45,7 @@ import java.util.Map;
  */
 public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwner {
     private final SimpleInventory inventory = new SimpleInventory(5);
+    private int cooldown = 0;
 
     public ReapingPillagerEntity(EntityType<ReapingPillagerEntity> entityType, World world) {
         super(entityType, world);
@@ -54,6 +55,7 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(2, new PatrolApproachGoal(this, 10.0F));
+        this.goalSelector.add(2, new FleeEntityGoal<>(this, IronGolemEntity.class, 4.0F, 1.0, 1.2));
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(8, new WanderAroundGoal(this, 0.6));
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 15.0F, 1.0F));
@@ -66,10 +68,10 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
 
     public static DefaultAttributeContainer.Builder createReapingPillagerAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35F)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 24.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0);
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.42F)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 18.0F)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 44.0);
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
@@ -126,9 +128,18 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
     }
 
     @Override
+    public void tick() {
+        super.tick();
+
+        if (this.cooldown > 0) {
+            this.cooldown--;
+        }
+    }
+
+    @Override
     public boolean tryAttack(Entity target) {
         if (!(this.getMainHandStack().getItem() instanceof ReaperItem)
-                || !(target instanceof LivingEntity)) return super.tryAttack(target);
+                || !(target instanceof LivingEntity) || cooldown > 0) return super.tryAttack(target);
 
         float g = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_KNOCKBACK) + (float) EnchantmentHelper.getKnockback(this);
 
@@ -152,6 +163,7 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
             this.applyDamageEffects(this, target);
             this.onAttacking(target);
             this.swingHand(Hand.MAIN_HAND);
+            this.cooldown = ((ReaperItem) this.getMainHandStack().getItem()).getCooldownTicks() + 60;
         }
 
         return result == ActionResult.SUCCESS;

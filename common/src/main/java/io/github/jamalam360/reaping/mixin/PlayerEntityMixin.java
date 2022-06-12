@@ -1,16 +1,20 @@
 package io.github.jamalam360.reaping.mixin;
 
+import com.mojang.authlib.GameProfile;
 import io.github.jamalam360.reaping.ReapingExpectPlatform;
 import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.config.ReapingConfig;
 import io.github.jamalam360.reaping.logic.CustomReapableEntityDuck;
 import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtHelper;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
@@ -29,12 +33,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerEntityMixin extends LivingEntity implements CustomReapableEntityDuck {
     private boolean reapingmod$remainSmall = false;
     private int reapingmod$remainingSmallTicks = 0;
+
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Shadow
     public abstract boolean damage(DamageSource source, float amount);
+
+    @Shadow public abstract GameProfile getGameProfile();
 
     @Inject(
             method = "writeCustomDataToNbt",
@@ -83,6 +90,15 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
                 this.damage(DamageSource.GENERIC, 1.0f);
             }
 
+            if (EnchantmentHelper.getLevel(ReapingMod.EXECUTIONER.get(), toolStack) > 0) {
+                if (this.world.random.nextDouble() < 0.15D) {
+                    ItemStack stack = new ItemStack(Items.PLAYER_HEAD);
+
+                    GameProfile gameProfile = this.getGameProfile();
+                    stack.getOrCreateNbt().put("SkullOwner", NbtHelper.writeGameProfile(new NbtCompound(), gameProfile));
+                    this.dropStack(stack);
+                }
+            }
 
             return ActionResult.SUCCESS;
         } else {

@@ -17,7 +17,11 @@ import io.github.jamalam360.reaping.pillager.ReapingPillagerEntityRenderer;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -40,6 +44,7 @@ public class ReapingMod {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registry.ITEM_KEY);
     public static final DeferredRegister<Identifier> STATS = DeferredRegister.create(MOD_ID, Registry.CUSTOM_STAT_KEY);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(MOD_ID, Registry.ENTITY_TYPE_KEY);
+    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(MOD_ID, Registry.ENCHANTMENT_KEY);
 
     public static final RegistrySupplier<ReaperItem> IRON_REAPER;
     public static final RegistrySupplier<ReaperItem> GOLD_REAPER;
@@ -51,6 +56,8 @@ public class ReapingMod {
 
     public static final RegistrySupplier<EntityType<ReapingPillagerEntity>> REAPING_PILLAGER_ENTITY_TYPE;
 
+    public static final RegistrySupplier<Enchantment> EXECUTIONER;
+
     public static void init() {
         log(Level.INFO, "Initializing Reaping Mod...");
 
@@ -59,6 +66,7 @@ public class ReapingMod {
         ITEMS.register();
         STATS.register();
         ENTITY_TYPES.register();
+        ENCHANTMENTS.register();
 
         EntityAttributeRegistry.register(
                 REAPING_PILLAGER_ENTITY_TYPE,
@@ -166,6 +174,21 @@ public class ReapingMod {
                         .setDimensions(0.6F, 1.95F)
                         .maxTrackingRange(8)
                         .build("reaping_pillager")
+        );
+
+        EXECUTIONER = ENCHANTMENTS.register(
+                new Identifier(MOD_ID, "executioner"),
+                () -> new Enchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}) {
+                    @Override
+                    public boolean canAccept(Enchantment other) {
+                        return !(other == Enchantments.LOOTING) && super.canAccept(other);
+                    }
+
+                    @Override
+                    public boolean isAcceptableItem(ItemStack stack) {
+                        return stack.getItem() instanceof ReaperItem;
+                    }
+                }
         );
     }
 
