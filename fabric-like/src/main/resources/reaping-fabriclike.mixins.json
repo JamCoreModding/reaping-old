@@ -3,7 +3,8 @@
   "package": "io.github.jamalam360.reaping.fabriclike.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "pillager.ChunkGeneratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
