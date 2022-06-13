@@ -61,9 +61,9 @@ githubRelease {
         token = System.getenv("GITHUB_TOKEN")
         owner = "JamCoreModding"
         repo = "Reaping"
-        targetCommitish = "main"
+        targetCommitish = "1.19"
         tagName = rootProject.property("mod_version")
-        releaseName = rootProject.property("release_name").replace("\$LOADER", "Fabric + Forge")
+        releaseName = rootProject.property("release_name").replace("\$LOADER", "Fabric, Quilt, & Forge")
         body = rootProject.file("CHANGELOG.md").getText() +
                 "\n Release files can be found on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/reaping/files)"
         prerelease = false

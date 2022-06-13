@@ -99,7 +99,7 @@ curseforge {
             }
 
             addGameVersion "Quilt"
-            addGameVersion "1.18.2"
+            addGameVersion libs.versions.minecraft.get()
 
             relations {
                 requiredDependency "architectury-api"
