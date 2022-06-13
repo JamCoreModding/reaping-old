@@ -1,5 +1,7 @@
 ## Changelog
 
+- This is the final release for 1.18.2.
+
 ### Features
 
 - Add villager and wandering trader trades.
@@ -11,4 +13,4 @@
 
 Closed Issues: #4.
 
-[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.4...2.0.0)
+[Full Changelog](https://github.com/JamCoreModding/Reaping/compare/2.1.4...2.1.5)
