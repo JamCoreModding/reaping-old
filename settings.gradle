@@ -8,10 +8,20 @@ pluginManagement {
     }
 }
 
+rootProject.name = "reaping"
+
 include("common")
 include("fabric-like")
 include("fabric")
 include("quilt")
 include("forge")
 
-rootProject.name = "reaping"
+enableFeaturePreview("VERSION_CATALOGS")
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            from(files("libs.versions.toml"))
+        }
+    }
+}

@@ -17,33 +17,21 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    forge libs.forge
 
-    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}"
-    modApi "com.github.Virtuoel:Pehkui:${rootProject.pehkui_forge}"
+    modApi libs.architectury.forge
+    modApi libs.cloth.config.forge
+    modApi libs.pehkui.forge
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
 
 processResources {
-    inputs.property "github_url", rootProject.property("github_url")
-    inputs.property "license", rootProject.property("license")
-    inputs.property "id", rootProject.property("id")
     inputs.property "version", project.version
-    inputs.property "name", rootProject.property("name")
-    inputs.property "author", rootProject.property("author")
-    inputs.property "description", rootProject.property("description")
 
     filesMatching("META-INF/mods.toml") {
-        expand "github_url": rootProject.property("github_url"),
-                "license": rootProject.property("license"),
-                "id": rootProject.property("id"),
-                "version": project.version,
-                "name": rootProject.property("name"),
-                "author": rootProject.property("author"),
-                "description": rootProject.property("description")
+        expand "version": project.version
     }
 }
 
@@ -102,6 +90,7 @@ curseforge {
             relations {
                 requiredDependency "architectury-api"
                 requiredDependency "cloth-config"
+                requiredDependency "pehkui"
             }
         }
 

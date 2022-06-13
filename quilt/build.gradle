@@ -1,5 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 repositories {
@@ -20,17 +21,17 @@ configurations {
 }
 
 dependencies {
-    modImplementation "org.quiltmc:quilt-loader:${rootProject.quilt_loader_version}"
-    modApi "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${rootProject.quilt_fabric_api_version}"
+    modImplementation libs.quilt.loader
+    modApi libs.quilted.fabric.api
 
-    modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}") {
+    modApi(libs.architectury.fabric) {
         exclude group: "net.fabricmc"
         exclude group: "net.fabricmc.fabric-api"
     }
-    modApi("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
-    modApi("com.github.Virtuoel:Pehkui:${rootProject.pehkui_fabric}", {
+    modApi libs.mod.menu
+    modApi(libs.pehkui) {
         exclude group: "net.fabricmc.fabric-api"
-    })
+    }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionQuilt")) { transitive false }
@@ -78,16 +79,37 @@ components.java {
     }
 }
 
-publishing {
-    publications {
-        mavenQuilt(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
-    }
+curseforge {
+    if (System.getenv("CURSEFORGE_API_KEY") != null) {
+        println("Enabling Curseforge publishing for Quilt")
+        apiKey = System.getenv("CURSEFORGE_API_KEY")
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
+        project {
+            id = "485532"
+            changelogType = "markdown"
+            releaseType = "release"
+            changelog = rootProject.file("CHANGELOG.md")
+
+            mainArtifact(remapJar.archiveFile) {
+                displayName = rootProject.property("release_name").replace("\$LOADER", "Quilt")
+            }
+
+            afterEvaluate {
+                uploadTask.dependsOn("build")
+            }
+
+            addGameVersion "Quilt"
+            addGameVersion "1.18.2"
+
+            relations {
+                requiredDependency "architectury-api"
+                requiredDependency "cloth-config"
+                requiredDependency "pehkui"
+            }
+        }
+
+        options {
+            forgeGradleIntegration = false
+        }
     }
 }

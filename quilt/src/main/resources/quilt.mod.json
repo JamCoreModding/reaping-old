@@ -46,6 +46,14 @@
       {
         "id": "architectury",
         "version": ">=4.2.50"
+      },
+      {
+        "id": "cloth-config",
+        "version": "*"
+      },
+      {
+        "id": "pehkui",
+        "version": "*"
       }
     ]
   }

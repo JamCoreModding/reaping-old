@@ -1,0 +1,43 @@
+[versions]
+minecraft = "1.19"
+quilt-mappings = "1.19+build.1"
+
+fabric-loader = "0.14.7"
+quilt-loader = "0.17.0"
+forge = "1.19-41.0.5"
+
+architectury = "5.5.18"
+cloth-config = "7.0.69"
+mod-menu = "4.0.0"
+pehkui = "3.3.2"
+
+quilted-fabric-api = "2.0.0-alpha.3+0.55.3-1.19"
+
+pehkui-forge = "3.3.2+1.18.2-forge"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+quilt-mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "quilt-mappings" }
+
+# Loaders
+fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
+quilt-loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt-loader"}
+forge = { module = "net.minecraftforge:forge", version.ref = "forge"}
+
+# Common
+architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
+cloth-config = { module = "me.shedaniel.cloth:cloth-config", version.ref = "cloth-config" }
+
+# Fabriclike
+architectury-fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
+cloth-config-fabric = { module = "me.shedaniel.cloth:cloth-config-fabric", version.ref = "cloth-config" }
+mod-menu = { module = "com.terraformersmc:modmenu", version.ref = "mod-menu" }
+pehkui = { module = "com.github.Virtuoel:Pehkui", version.ref = "pehkui" }
+
+# Quilt
+quilted-fabric-api = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "quilted-fabric-api"}
+
+# Forge
+architectury-forge = { module = "dev.architectury:architectury-forge", version.ref = "architectury" }
+cloth-config-forge = { module = "me.shedaniel.cloth:cloth-config-forge", version.ref = "cloth-config" }
+pehkui-forge = { module = "com.github.Virtuoel:Pehkui", version.ref = "pehkui-forge" }

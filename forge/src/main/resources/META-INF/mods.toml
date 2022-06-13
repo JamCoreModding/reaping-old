@@ -1,15 +1,15 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
-issueTrackerURL = "${github_url}/issues"
-license = "${license}"
+issueTrackerURL = "https://github.com/JamCoreModding/Reaping/issues"
+license = "MIT"
 
 [[mods]]
-modId = "${id}"
+modId = "reaping"
 version = "${version}"
 displayName = "Reaping"
-authors = "${author}"
+authors = "Jamalam"
 description = '''
-${description}
+Harvest your animals in the most cursed way possible.
 '''
 logoFile = "icon.png"
 
@@ -36,5 +36,10 @@ side = "BOTH"
 
 [[dependencies.reaping]]
 modId = "cloth_config"
+mandatory = true
+versionRange = "[1.0.0,]"
+
+[[dependencies.pehkui]]
+modId = "pehkui"
 mandatory = true
 versionRange = "[1.0.0,]"

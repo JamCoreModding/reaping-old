@@ -19,15 +19,15 @@ configurations {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation libs.fabric.loader
 
-    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
-    modApi("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
-    modApi("com.github.Virtuoel:Pehkui:${rootProject.pehkui_fabric}", {
+    modApi libs.architectury.fabric
+    modApi libs.mod.menu
+    modApi (libs.pehkui) {
         exclude group: "net.fabricmc.fabric-api"
-    })
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+    }
+    modApi (libs.cloth.config.fabric) {
+        exclude group: "net.fabricmc.fabric-api"
     }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -37,22 +37,10 @@ dependencies {
 }
 
 processResources {
-    inputs.property "id", rootProject.property("id")
     inputs.property "version", project.version
-    inputs.property "name", rootProject.property("name")
-    inputs.property "description", rootProject.property("description")
-    inputs.property "author", rootProject.property("author")
-    inputs.property "github_url", rootProject.property("github_url")
-    inputs.property "license", rootProject.property("license")
 
     filesMatching("fabric.mod.json") {
-        expand "id": rootProject.property("id"),
-                "version": project.version,
-                "name": rootProject.property("name"),
-                "description": rootProject.property("description"),
-                "author": rootProject.property("author"),
-                "github_url": rootProject.property("github_url"),
-                "license": rootProject.property("license")
+        expand "version": project.version
     }
 }
 
@@ -86,7 +74,6 @@ components.java {
     }
 }
 
-
 curseforge {
     if (System.getenv("CURSEFORGE_API_KEY") != null) {
         println("Enabling Curseforge publishing for Fabric")
@@ -113,6 +100,7 @@ curseforge {
                 requiredDependency "fabric-api"
                 requiredDependency "architectury-api"
                 requiredDependency "cloth-config"
+                requiredDependency "pehkui"
             }
         }
 
