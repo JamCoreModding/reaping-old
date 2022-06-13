@@ -73,14 +73,7 @@ githubRelease {
 
 tasks.named("publish") {
     dependsOn "fabric:curseforge"
+    dependsOn "quilt:curseforge"
     dependsOn "forge:curseforge"
     dependsOn "githubRelease"
-
-    doLast {
-        println("Clearing CHANGELOG.md")
-
-        rootProject.file("CHANGELOG.md").write(
-                rootProject.file("CHANGELOG_TEMPLATE.md").getText()
-        )
-    }
 }
