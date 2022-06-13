@@ -61,7 +61,7 @@ githubRelease {
         token = System.getenv("GITHUB_TOKEN")
         owner = "JamCoreModding"
         repo = "Reaping"
-        targetCommitish = "main"
+        targetCommitish = "1.18"
         tagName = rootProject.property("mod_version")
         releaseName = rootProject.property("release_name").replace("\$LOADER", "Fabric + Forge")
         body = rootProject.file("CHANGELOG.md").getText() +

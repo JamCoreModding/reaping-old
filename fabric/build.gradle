@@ -29,7 +29,7 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    nclude(modImplementation("maven.modrinth:sjvt:1.2.0+pre6"))
+    include(modImplementation("maven.modrinth:sjvt:1.2.0+pre6"))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
