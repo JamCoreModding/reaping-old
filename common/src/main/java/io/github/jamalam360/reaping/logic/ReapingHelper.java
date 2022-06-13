@@ -112,7 +112,9 @@ public class ReapingHelper {
         }
     }
 
-    public static void registerValidReapingTool(Class<? extends Item> itemClass) {
-        VALID_REAPING_TOOLS.add(itemClass);
+    public static void addReapingTool(Class<? extends Item> itemClass) {
+        if (!VALID_REAPING_TOOLS.contains(itemClass)) {
+            VALID_REAPING_TOOLS.add(itemClass);
+        }
     }
 }

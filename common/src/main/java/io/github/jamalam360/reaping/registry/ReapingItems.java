@@ -57,7 +57,7 @@ public class ReapingItems {
     private static ReaperItem getReapingTool(ToolMaterials material, float sharpnessModifier) {
         ReaperItem item = new ReaperItem(getReaperBaseProperties(), material, sharpnessModifier);
         DispenserBlock.registerBehavior(item, new ReapingToolDispenserBehavior());
-        ReapingHelper.registerValidReapingTool(item.getClass());
+        ReapingHelper.addReapingTool(item.getClass());
         return item;
     }
 }
