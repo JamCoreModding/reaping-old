@@ -18,7 +18,7 @@ public class HarvestScythes {
                 @SuppressWarnings("unchecked")
                 Class<? extends Item> clazz = (Class<? extends Item>) ReapingMod.class.getClassLoader()
                         .loadClass("wraith.harvest_scythes.item.ScytheItem");
-                ReapingHelper.registerValidReapingTool(clazz);
+                ReapingHelper.addReapingTool(clazz);
             } catch (Exception e) {
                 ReapingMod.log(Level.WARN, "Failed to enable Harvest Scythe compatibility");
             }

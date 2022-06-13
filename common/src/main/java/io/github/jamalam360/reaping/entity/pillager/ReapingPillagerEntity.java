@@ -2,7 +2,7 @@ package io.github.jamalam360.reaping.entity.pillager;
 
 import com.google.common.collect.Maps;
 import dev.architectury.networking.NetworkManager;
-import io.github.jamalam360.reaping.ReaperItem;
+import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.registry.ReapingItems;
 import net.minecraft.enchantment.Enchantment;

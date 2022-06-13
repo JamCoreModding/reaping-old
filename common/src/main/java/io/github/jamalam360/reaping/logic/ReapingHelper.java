@@ -1,6 +1,6 @@
 package io.github.jamalam360.reaping.logic;
 
-import io.github.jamalam360.reaping.ReaperItem;
+import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;

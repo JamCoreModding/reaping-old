@@ -1,4 +1,4 @@
-package io.github.jamalam360.reaping;
+package io.github.jamalam360.reaping.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
