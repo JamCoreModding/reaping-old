@@ -78,6 +78,5 @@ tasks.named("publish") {
     dependsOn "fabric:modrinth"
     dependsOn "quilt:modrinth"
     dependsOn "forge:modrinth"
-    dependsOn "fabric:modrinthSyncBody"
     dependsOn "githubRelease"
 }

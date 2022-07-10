@@ -17,6 +17,7 @@ This release contains a lot of balance, and polish features, but _**will not be 
 
 - Use some Architectury API features in place of custom code.
 - General code clean-up to make this more maintainable.
+- Don't allow reaping if the target is blocking.
 
 Closed Issues: #4.
 
