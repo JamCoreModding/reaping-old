@@ -11,6 +11,7 @@ This release contains a lot of balance, and polish features, but _**will not be 
 - Add a new kind of pillager, who carries a reaper and will reap any villagers it finds during a raid!
 - Add tooltips to the config.
 - Remove some unnecessarily granular configs.
+- Publish on modrinth :).
 
 ### Fixes
 

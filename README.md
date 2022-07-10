@@ -15,14 +15,16 @@ the reaper tool simply cuts off most of the animal, making them a child again - 
 - Fight a new kind of pillager, who carries a reaper and will reap any villagers it finds during a raid!
 - Enjoy our compatibility with other mods such as _Harvest Scythes_.
 
-![Demo GIF](demo.gif)
+![Demo GIF](https://github.com/JamCoreModding/Reaping/raw/1.19/demo.gif)
 
 The reapers can be crafted like so:
 
-![Diamond Reaper Recipe](recipe.png)
+![Diamond Reaper Recipe](https://github.com/JamCoreModding/Reaping/raw/1.19/recipe.png)
 
-Available for both Forge, Fabric, and Quilt.
+Available for Forge, Fabric, and Quilt.
 
-[CurseForge page](https://www.curseforge.com/minecraft/mc-mods/reaping)
+## Links
 
-[Discord](https://discord.jamalam.tech)
+- [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/reaping)
+- [Modrinth Page](https://modrinth.com/mods/reaping)
+- [Discord](https://discord.jamalam.tech)

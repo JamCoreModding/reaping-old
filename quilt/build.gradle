@@ -1,6 +1,7 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
     id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 repositories {
@@ -102,6 +103,7 @@ curseforge {
             addGameVersion libs.versions.minecraft.get()
 
             relations {
+                requiredDependency "qsl"
                 requiredDependency "architectury-api"
                 requiredDependency "cloth-config"
                 requiredDependency "pehkui"
@@ -110,6 +112,27 @@ curseforge {
 
         options {
             forgeGradleIntegration = false
+        }
+    }
+}
+
+modrinth {
+    if (System.getenv("MODRINTH_API_KEY") != null) {
+        println("Enabling Modrinth publishing for Quilt")
+
+        projectId = System.getenv("MODRINTH_API_KEY")
+        projectId = "reaping"
+        versionNumber = rootProject.property("release_name").replace("\$LOADER", "Quilt")
+        changelog = rootProject.file("CHANGELOG.md").text
+        uploadFile = remapJar
+        loaders = ["quilt"]
+        gameVersions = [libs.versions.minecraft.get()]
+
+        dependencies {
+            required.project "qsl"
+            required.project "architectury-api"
+            required.project "cloth-config"
+            required.project "pehkui"
         }
     }
 }

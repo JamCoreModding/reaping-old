@@ -9,11 +9,11 @@ forge = "1.19-41.0.5"
 architectury = "5.5.18"
 cloth-config = "7.0.69"
 mod-menu = "4.0.0"
-pehkui = "3.3.2"
+pehkui = "3.3.3"
 
 quilted-fabric-api = "2.0.0-alpha.3+0.55.3-1.19"
 
-pehkui-forge = "3.3.2-1.18.2-forge"
+pehkui-forge = "3.3.3-1.19-forge"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }

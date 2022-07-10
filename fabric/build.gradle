@@ -3,6 +3,7 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
     id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 architectury {
@@ -107,5 +108,28 @@ curseforge {
         options {
             forgeGradleIntegration = false
         }
+    }
+}
+
+modrinth {
+    syncBodyFrom = rootProject.file("README.md").text
+
+    if (System.getenv("MODRINTH_API_KEY") != null) {
+        println("Enabling Modrinth publishing for Fabric")
+
+        projectId = System.getenv("MODRINTH_API_KEY")
+        projectId = "reaping"
+            versionNumber = rootProject.property("release_name").replace("\$LOADER", "Fabric")
+            changelog = rootProject.file("CHANGELOG.md").text
+            uploadFile = remapJar
+            loaders = ["fabric"]
+            gameVersions = [libs.versions.minecraft.get()]
+
+            dependencies {
+                required.project "fabric-api"
+                required.project "architectury-api"
+                required.project "cloth-config"
+                required.project "pehkui"
+            }
     }
 }

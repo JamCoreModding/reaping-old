@@ -1,6 +1,7 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
     id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 architectury {
@@ -96,6 +97,26 @@ curseforge {
 
         options {
             forgeGradleIntegration = false
+        }
+    }
+}
+
+modrinth {
+    if (System.getenv("MODRINTH_API_KEY") != null) {
+        println("Enabling Modrinth publishing for Forge")
+
+        projectId = System.getenv("MODRINTH_API_KEY")
+        projectId = "reaping"
+        versionNumber = rootProject.property("release_name").replace("\$LOADER", "Forge")
+        changelog = rootProject.file("CHANGELOG.md").text
+        uploadFile = remapJar
+        loaders = ["forge"]
+        gameVersions = [libs.versions.minecraft.get()]
+
+        dependencies {
+            required.project "architectury-api"
+            required.project "cloth-config"
+            required.project "pehkui"
         }
     }
 }
