@@ -65,6 +65,7 @@ remapJar {
 }
 
 jar {
+    archivesBaseName = project.archivesBaseName + "-quilt"
     classifier "dev"
 }
 

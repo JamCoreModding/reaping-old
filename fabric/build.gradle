@@ -60,6 +60,7 @@ remapJar {
 }
 
 jar {
+    archivesBaseName = project.archivesBaseName + "-fabric"
     classifier "dev"
 }
 
