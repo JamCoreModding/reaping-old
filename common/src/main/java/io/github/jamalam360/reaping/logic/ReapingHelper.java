@@ -88,27 +88,29 @@ public class ReapingHelper {
     }
 
     private static void dropEntityStacks(@Nullable PlayerEntity user, LivingEntity entity, ItemStack stack) {
-        LootTable lootTable = entity.world.getServer().getLootManager().getTable(entity.getLootTable());
+        if (!entity.world.isClient) {
+            LootTable lootTable = entity.world.getServer().getLootManager().getTable(entity.getLootTable());
 
-        DamageSource source = DamageSource.GENERIC;
+            DamageSource source = DamageSource.GENERIC;
 
-        if (user != null) {
-            source = DamageSource.player(user);
-        }
+            if (user != null) {
+                source = DamageSource.player(user);
+            }
 
-        LootContext.Builder builder = new LootContext.Builder((ServerWorld) entity.world)
-                .random(entity.world.random)
-                .parameter(LootContextParameters.THIS_ENTITY, entity)
-                .parameter(LootContextParameters.ORIGIN, entity.getPos())
-                .parameter(LootContextParameters.DAMAGE_SOURCE, source)
-                .optionalParameter(LootContextParameters.KILLER_ENTITY, source.getAttacker())
-                .optionalParameter(LootContextParameters.DIRECT_KILLER_ENTITY, source.getSource());
+            LootContext.Builder builder = new LootContext.Builder((ServerWorld) entity.world)
+                    .random(entity.world.random)
+                    .parameter(LootContextParameters.THIS_ENTITY, entity)
+                    .parameter(LootContextParameters.ORIGIN, entity.getPos())
+                    .parameter(LootContextParameters.DAMAGE_SOURCE, source)
+                    .optionalParameter(LootContextParameters.KILLER_ENTITY, source.getAttacker())
+                    .optionalParameter(LootContextParameters.DIRECT_KILLER_ENTITY, source.getSource());
 
-        int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, stack);
-        int rollTimes = lootingLvl == 0 ? 1 : entity.world.random.nextInt(lootingLvl) + 1;
+            int lootingLvl = EnchantmentHelper.getLevel(Enchantments.LOOTING, stack);
+            int rollTimes = lootingLvl == 0 ? 1 : entity.world.random.nextInt(lootingLvl) + 1;
 
-        for (int i = 0; i < rollTimes; i++) {
-            lootTable.generateLoot(builder.build(LootContextTypes.ENTITY), entity::dropStack);
+            for (int i = 0; i < rollTimes; i++) {
+                lootTable.generateLoot(builder.build(LootContextTypes.ENTITY), entity::dropStack);
+            }
         }
     }
 
