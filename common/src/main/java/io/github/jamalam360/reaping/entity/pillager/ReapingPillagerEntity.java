@@ -71,7 +71,6 @@ public class ReapingPillagerEntity extends IllagerEntity implements InventoryOwn
         this.targetSelector.add(1, new RevengeGoal(this, RaiderEntity.class).setGroupRevenge());
         this.targetSelector.add(2, new TargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(3, new TargetGoal<>(this, MerchantEntity.class, false));
-        this.targetSelector.add(3, new TargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
