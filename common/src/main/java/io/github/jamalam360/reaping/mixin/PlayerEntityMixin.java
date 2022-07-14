@@ -33,8 +33,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements CustomReapableEntityDuck {
-    private boolean reapingmod$remainSmall = false;
-    private int reapingmod$remainingSmallTicks = 0;
+    private boolean reaping$remainSmall = false;
+    private int reaping$remainingSmallTicks = 0;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -50,38 +50,38 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CustomRe
             method = "writeCustomDataToNbt",
             at = @At("TAIL")
     )
-    public void reapingmod$serializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
-        nbt.putBoolean("reapingmod$remainSmall", this.reapingmod$remainSmall);
-        nbt.putInt("reapingmod$remainSmallTicks", this.reapingmod$remainingSmallTicks);
+    public void reaping$serializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+        nbt.putBoolean("reaping$remainSmall", this.reaping$remainSmall);
+        nbt.putInt("reaping$remainSmallTicks", this.reaping$remainingSmallTicks);
     }
 
     @Inject(
             method = "readCustomDataFromNbt",
             at = @At("TAIL")
     )
-    public void reapingmod$deserializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
-        this.reapingmod$remainSmall = nbt.getBoolean("reapingmod$remainSmall");
-        this.reapingmod$remainingSmallTicks = nbt.getInt("reapingmod$remainSmallTicks");
+    public void reaping$deserializeRemainSmall(NbtCompound nbt, CallbackInfo ci) {
+        this.reaping$remainSmall = nbt.getBoolean("reaping$remainSmall");
+        this.reaping$remainingSmallTicks = nbt.getInt("reaping$remainSmallTicks");
     }
 
     @Inject(
             method = "tick",
             at = @At("TAIL")
     )
-    public void reapingmod$tick(CallbackInfo ci) {
-        if (this.reapingmod$remainingSmallTicks != 0 && this.reapingmod$remainSmall) {
-            this.reapingmod$remainingSmallTicks--;
-        } else if (this.reapingmod$remainingSmallTicks <= 0 && this.reapingmod$remainSmall) {
-            this.reapingmod$remainSmall = false;
+    public void reaping$tick(CallbackInfo ci) {
+        if (this.reaping$remainingSmallTicks != 0 && this.reaping$remainSmall) {
+            this.reaping$remainingSmallTicks--;
+        } else if (this.reaping$remainingSmallTicks <= 0 && this.reaping$remainSmall) {
+            this.reaping$remainSmall = false;
             ReapingExpectPlatform.setScale(this, 1f);
         }
     }
 
     @Override
-    public ActionResult reapingmod$onReaped(@Nullable PlayerEntity user, ItemStack toolStack) {
-        if (!this.reapingmod$remainSmall && AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().reapPlayers) {
-            this.reapingmod$remainSmall = true;
-            this.reapingmod$remainingSmallTicks = ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
+    public ActionResult reaping$onReaped(@Nullable PlayerEntity user, ItemStack toolStack) {
+        if (!this.reaping$remainSmall && AutoConfig.getConfigHolder(ReapingConfig.class).getConfig().reapPlayers) {
+            this.reaping$remainSmall = true;
+            this.reaping$remainingSmallTicks = ReapingMod.RANDOM.nextInt(50 * 20, 120 * 20);
 
             this.dropItem(ReapingItems.HUMAN_MEAT.get());
             ReapingExpectPlatform.setScale(this, 0.45f);

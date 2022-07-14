@@ -2,16 +2,16 @@
 minecraft = "1.19"
 quilt-mappings = "1.19+build.1"
 
-fabric-loader = "0.14.7"
+fabric-loader = "0.14.8"
 quilt-loader = "0.17.0"
-forge = "1.19-41.0.5"
+forge = "1.19-41.0.94"
 
-architectury = "5.5.18"
-cloth-config = "7.0.69"
-mod-menu = "4.0.0"
+architectury = "5.9.30"
+cloth-config = "7.0.73"
+mod-menu = "4.0.4"
 pehkui = "3.3.3"
 
-quilted-fabric-api = "2.0.0-alpha.3+0.55.3-1.19"
+quilted-fabric-api = "2.0.0-beta.5+0.57.0-1.19"
 
 pehkui-forge = "3.3.3-1.19-forge"
 

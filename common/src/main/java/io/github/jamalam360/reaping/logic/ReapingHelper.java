@@ -2,6 +2,7 @@ package io.github.jamalam360.reaping.logic;
 
 import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.registry.ReapingEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -37,7 +38,7 @@ public class ReapingHelper {
         if (!VALID_REAPING_TOOLS.contains(toolStack.getItem().getClass()) || reapedEntity.isDead() || reapedEntity.isBlocking()) {
             result = ActionResult.PASS;
         } else if (reapedEntity instanceof CustomReapableEntityDuck reapableEntity) {
-            return reapableEntity.reapingmod$onReaped(user, toolStack);
+            return reapableEntity.reaping$onReaped(user, toolStack);
         } else if (reapedEntity instanceof AnimalEntity && !reapedEntity.isBaby()) {
             dropEntityStacks(user, reapedEntity, toolStack);
 
@@ -73,6 +74,20 @@ public class ReapingHelper {
 
             if (toolStack.getItem() instanceof ReaperItem reaperItem) {
                 chance *= reaperItem.sharpnessModifier;
+
+                int bluntnessLevel = EnchantmentHelper.getLevel(ReapingEnchantments.CURSE_OF_BLUNTNESS.get(), toolStack);
+
+                if (bluntnessLevel > 0) {
+                    chance += 0.4D;
+                }
+
+                int sharpnessLevel = EnchantmentHelper.getLevel(Enchantments.SHARPNESS, toolStack);
+
+                if (sharpnessLevel > 0) {
+                    chance -= 0.1D * sharpnessLevel;
+                }
+
+                chance = Math.max(0.0D, Math.min(1.0D, chance));
 
                 if (user != null) {
                     user.getItemCooldownManager().set(reaperItem, reaperItem.getCooldownTicks());

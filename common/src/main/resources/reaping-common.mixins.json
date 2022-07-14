@@ -2,7 +2,9 @@
   "required": true,
   "package": "io.github.jamalam360.reaping.mixin",
   "compatibilityLevel": "JAVA_16",
+  "minVersion": "0.8",
   "mixins": [
+    "DamageEnchantmentMixin",
     "ItemMixin",
     "PlayerEntityMixin",
     "VillagerEntityMixin",

@@ -1,0 +1,11 @@
+{
+  "type": "reaping:spawn_modifier",
+  "category": "monster",
+  "spawn": {
+    "type": "reaping:reaping_pillager",
+    "maxCount": 4,
+    "minCount": 1,
+    "weight": 1
+  },
+  "structures": "minecraft:pillager_outpost"
+}

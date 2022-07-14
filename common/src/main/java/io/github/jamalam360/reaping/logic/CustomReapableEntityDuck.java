@@ -10,5 +10,5 @@ import javax.annotation.Nullable;
  * @author Jamalam360
  */
 public interface CustomReapableEntityDuck {
-    ActionResult reapingmod$onReaped(@Nullable PlayerEntity user, ItemStack toolStack);
+    ActionResult reaping$onReaped(@Nullable PlayerEntity user, ItemStack toolStack);
 }
