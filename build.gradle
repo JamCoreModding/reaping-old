@@ -65,7 +65,7 @@ githubRelease {
         tagName = rootProject.property("mod_version")
         releaseName = rootProject.property("release_name").replace("\$LOADER", "Fabric, Quilt, & Forge")
         body = rootProject.file("CHANGELOG.md").getText() +
-                "\n Release files can be found on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/reaping/files)"
+                "\n Release files can be found on [Curseforge](https://www.curseforge.com/minecraft/mc-mods/reaping/files) or [Modrinth](https://modrinth.com/mod/reaping)"
         prerelease = false
         draft = true
     }
