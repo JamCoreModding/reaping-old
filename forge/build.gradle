@@ -116,7 +116,7 @@ modrinth {
 
         token = System.getenv("MODRINTH_API_KEY")
         projectId = "reaping"
-        versionNumber = rootProject.property("mod_version")  "-forge"
+        versionNumber = rootProject.property("mod_version") + "-forge"
         versionName = rootProject.property("release_name").replace("\$LOADER", "Forge")
         changelog = rootProject.file("CHANGELOG.md").text
         uploadFile = remapJar
