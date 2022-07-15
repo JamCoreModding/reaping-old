@@ -2,8 +2,8 @@ package io.github.jamalam360.reaping.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.item.ReaperItem;
 import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

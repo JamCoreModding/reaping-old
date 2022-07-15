@@ -7,8 +7,8 @@ This release contains a lot of balance, and polish features, but _**will not be 
 - Port to 1.19.
 - The different tiers of reapers now have varying chances of killing the entity when used - to represent sharpness/the
   cleanness of the cut.
-  - Enchanting the reaper with sharpness will affect this value.
-  - A new enchantment, Curse of Bluntness, has been added, which also affects this value.
+    - Enchanting the reaper with sharpness will affect this value.
+    - A new enchantment, Curse of Bluntness, has been added, which also affects this value.
 - Add a cooldown to the reaper based on its tier.
 - Add a new kind of pillager, who carries a reaper and will reap any villagers it finds during a raid!
 - Add tooltips to the config.

@@ -24,10 +24,10 @@ dependencies {
 
     modApi libs.architectury.fabric
     modApi libs.mod.menu
-    modApi (libs.pehkui) {
+    modApi(libs.pehkui) {
         exclude group: "net.fabricmc.fabric-api"
     }
-    modApi (libs.cloth.config.fabric) {
+    modApi(libs.cloth.config.fabric) {
         exclude group: "net.fabricmc.fabric-api"
     }
 
@@ -118,19 +118,19 @@ modrinth {
     if (System.getenv("MODRINTH_API_KEY") != null) {
         println("Enabling Modrinth publishing for Fabric")
 
-        projectId = System.getenv("MODRINTH_API_KEY")
+        token = System.getenv("MODRINTH_API_KEY")
         projectId = "reaping"
-            versionNumber = rootProject.property("release_name").replace("\$LOADER", "Fabric")
-            changelog = rootProject.file("CHANGELOG.md").text
-            uploadFile = remapJar
-            loaders = ["fabric"]
-            gameVersions = [libs.versions.minecraft.get()]
+        versionNumber = rootProject.property("release_name").replace("\$LOADER", "Fabric")
+        changelog = rootProject.file("CHANGELOG.md").text
+        uploadFile = remapJar
+        loaders = ["fabric"]
+        gameVersions = [libs.versions.minecraft.get()]
 
-            dependencies {
-                required.project "fabric-api"
-                required.project "architectury-api"
-                required.project "cloth-config"
-                required.project "pehkui"
-            }
+        dependencies {
+            required.project "fabric-api"
+            required.project "architectury-api"
+            required.project "cloth-config"
+            required.project "pehkui"
+        }
     }
 }

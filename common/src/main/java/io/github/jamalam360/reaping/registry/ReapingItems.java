@@ -2,8 +2,8 @@ package io.github.jamalam360.reaping.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
+import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.logic.ReapingHelper;
 import io.github.jamalam360.reaping.logic.ReapingToolDispenserBehavior;
 import net.minecraft.block.DispenserBlock;

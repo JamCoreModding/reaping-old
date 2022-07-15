@@ -22,6 +22,14 @@ public record ReapingStructureModifier(HolderSet<StructureFeature> structures, S
                                        SpawnSettings.SpawnEntry spawn) implements StructureModifier {
     private static final RegistryObject<Codec<? extends StructureModifier>> SERIALIZER = RegistryObject.create(ReapingMod.id("spawn_modifier"), ForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, ReapingMod.MOD_ID);
 
+    public static Codec<ReapingStructureModifier> makeCodec() {
+        return RecordCodecBuilder.create(builder -> builder.group(
+                RegistryCodecs.homogeneousList(Registry.STRUCTURE_WORLDGEN, StructureFeature.DIRECT_CODEC).fieldOf("structures").forGetter(ReapingStructureModifier::structures),
+                SpawnGroup.CODEC.fieldOf("category").forGetter(ReapingStructureModifier::category),
+                SpawnSettings.SpawnEntry.CODEC.fieldOf("spawn").forGetter(ReapingStructureModifier::spawn)
+        ).apply(builder, ReapingStructureModifier::new));
+    }
+
     @Override
     public void modify(Holder<StructureFeature> structure, Phase phase, ModifiableStructureInfo.StructureInfo.Builder builder) {
         if (phase == Phase.ADD && this.structures.contains(structure)) {
@@ -34,13 +42,5 @@ public record ReapingStructureModifier(HolderSet<StructureFeature> structures, S
     @Override
     public Codec<? extends StructureModifier> codec() {
         return SERIALIZER.get();
-    }
-
-    public static Codec<ReapingStructureModifier> makeCodec() {
-        return RecordCodecBuilder.create(builder -> builder.group(
-                RegistryCodecs.homogeneousList(Registry.STRUCTURE_WORLDGEN, StructureFeature.DIRECT_CODEC).fieldOf("structures").forGetter(ReapingStructureModifier::structures),
-                SpawnGroup.CODEC.fieldOf("category").forGetter(ReapingStructureModifier::category),
-                SpawnSettings.SpawnEntry.CODEC.fieldOf("spawn").forGetter(ReapingStructureModifier::spawn)
-        ).apply(builder, ReapingStructureModifier::new));
     }
 }

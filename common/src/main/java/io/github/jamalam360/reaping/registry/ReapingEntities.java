@@ -17,13 +17,6 @@ public class ReapingEntities {
 
     public static final RegistrySupplier<EntityType<ReapingPillagerEntity>> REAPING_PILLAGER;
 
-    public static void registerAttributes() {
-        EntityAttributeRegistry.register(
-                REAPING_PILLAGER,
-                ReapingPillagerEntity::createReapingPillagerAttributes
-        );
-    }
-
     static {
         REAPING_PILLAGER = ENTITY_TYPES.register(
                 ReapingMod.id("reaping_pillager"),
@@ -33,6 +26,13 @@ public class ReapingEntities {
                         .setDimensions(0.6F, 1.95F)
                         .maxTrackingRange(8)
                         .build("reaping_pillager")
+        );
+    }
+
+    public static void registerAttributes() {
+        EntityAttributeRegistry.register(
+                REAPING_PILLAGER,
+                ReapingPillagerEntity::createReapingPillagerAttributes
         );
     }
 }

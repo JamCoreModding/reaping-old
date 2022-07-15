@@ -10,7 +10,7 @@ dependencies {
     modImplementation libs.fabric.loader
 
     modApi libs.architectury.fabric
-    modApi (libs.cloth.config.fabric) {
+    modApi(libs.cloth.config.fabric) {
         exclude(group: "net.fabricmc.fabric-api")
     }
     modApi libs.mod.menu

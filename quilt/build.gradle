@@ -121,7 +121,7 @@ modrinth {
     if (System.getenv("MODRINTH_API_KEY") != null) {
         println("Enabling Modrinth publishing for Quilt")
 
-        projectId = System.getenv("MODRINTH_API_KEY")
+        token = System.getenv("MODRINTH_API_KEY")
         projectId = "reaping"
         versionNumber = rootProject.property("release_name").replace("\$LOADER", "Quilt")
         changelog = rootProject.file("CHANGELOG.md").text
