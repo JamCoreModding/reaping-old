@@ -23,6 +23,7 @@ This release contains a lot of balance, and polish features, but _**will not be 
 - Don't allow reaping if the target is blocking.
 - Properly name the JARs with the loader in them (this makes Modrinth not angry).
 - Standardise mixin prefixes.
+- Fix mixins just...not applying on Forge, no idea how I didn't notice this before.
 
 Closed Issues: #4.
 

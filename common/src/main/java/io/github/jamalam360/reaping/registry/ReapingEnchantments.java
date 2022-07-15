@@ -4,6 +4,7 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.jamalam360.reaping.item.ReaperItem;
 import io.github.jamalam360.reaping.ReapingMod;
+import net.minecraft.enchantment.DamageEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
@@ -52,7 +53,7 @@ public class ReapingEnchantments {
 
                     @Override
                     public boolean canAccept(Enchantment other) {
-                        return !(other.isCursed()) && super.canAccept(other);
+                        return !(other instanceof DamageEnchantment) && super.canAccept(other);
                     }
 
                     @Override

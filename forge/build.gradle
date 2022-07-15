@@ -17,6 +17,14 @@ configurations {
     developmentForge.extendsFrom common
 }
 
+loom {
+    forge {
+        mixinConfigs = [
+                "reaping-common.mixins.json"
+        ]
+    }
+}
+
 dependencies {
     forge libs.forge
 
