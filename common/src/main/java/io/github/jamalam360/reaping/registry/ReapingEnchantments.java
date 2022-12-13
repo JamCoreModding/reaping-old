@@ -11,66 +11,70 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 
 /**
  * @author Jamalam
  */
+@SuppressWarnings("unchecked")
 public class ReapingEnchantments {
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ReapingMod.MOD_ID, Registry.ENCHANTMENT_KEY);
+
+    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ReapingMod.MOD_ID, (RegistryKey<Registry<Enchantment>>) Registries.ENCHANTMENT.getKey());
 
     public static final RegistrySupplier<Enchantment> EXECUTIONER;
     public static final RegistrySupplier<Enchantment> CURSE_OF_BLUNTNESS;
 
     static {
         EXECUTIONER = ENCHANTMENTS.register(
-                ReapingMod.id("executioner"),
-                () -> new Enchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}) {
-                    @Override
-                    public boolean canAccept(Enchantment other) {
-                        return !(other == Enchantments.LOOTING) && super.canAccept(other);
-                    }
+              ReapingMod.id("executioner"),
+              () -> new Enchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}) {
+                  @Override
+                  public boolean canAccept(Enchantment other) {
+                      return !(other == Enchantments.LOOTING) && super.canAccept(other);
+                  }
 
-                    @Override
-                    public boolean isAcceptableItem(ItemStack stack) {
-                        return stack.getItem() instanceof ReaperItem;
-                    }
-                }
+                  @Override
+                  public boolean isAcceptableItem(ItemStack stack) {
+                      return stack.getItem() instanceof ReaperItem;
+                  }
+              }
         );
 
         CURSE_OF_BLUNTNESS = ENCHANTMENTS.register(
-                ReapingMod.id("curse_of_bluntness"),
-                () -> new Enchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}) {
-                    @Override
-                    public float getAttackDamage(int level, EntityGroup group) {
-                        return -0.3f;
-                    }
+              ReapingMod.id("curse_of_bluntness"),
+              () -> new Enchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}) {
+                  @Override
+                  public float getAttackDamage(int level, EntityGroup group) {
+                      return -0.3f;
+                  }
 
-                    @Override
-                    public int getMaxLevel() {
-                        return 1;
-                    }
+                  @Override
+                  public int getMaxLevel() {
+                      return 1;
+                  }
 
-                    @Override
-                    public boolean canAccept(Enchantment other) {
-                        return !(other instanceof DamageEnchantment) && super.canAccept(other);
-                    }
+                  @Override
+                  public boolean canAccept(Enchantment other) {
+                      return !(other instanceof DamageEnchantment) && super.canAccept(other);
+                  }
 
-                    @Override
-                    public boolean isAcceptableItem(ItemStack stack) {
-                        return stack.getItem() instanceof ReaperItem;
-                    }
+                  @Override
+                  public boolean isAcceptableItem(ItemStack stack) {
+                      return stack.getItem() instanceof ReaperItem;
+                  }
 
-                    @Override
-                    public boolean isCursed() {
-                        return true;
-                    }
+                  @Override
+                  public boolean isCursed() {
+                      return true;
+                  }
 
-                    @Override
-                    public boolean isAvailableForRandomSelection() {
-                        return true;
-                    }
-                }
+                  @Override
+                  public boolean isAvailableForRandomSelection() {
+                      return true;
+                  }
+              }
         );
     }
 }

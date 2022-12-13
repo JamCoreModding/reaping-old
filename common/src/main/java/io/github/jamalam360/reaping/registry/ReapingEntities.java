@@ -7,13 +7,16 @@ import io.github.jamalam360.reaping.ReapingMod;
 import io.github.jamalam360.reaping.entity.pillager.ReapingPillagerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 
 /**
  * @author Jamalam
  */
+@SuppressWarnings("unchecked")
 public class ReapingEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ReapingMod.MOD_ID, Registry.ENTITY_TYPE_KEY);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ReapingMod.MOD_ID, (RegistryKey<Registry<EntityType<?>>>) Registries.ENTITY_TYPE.getKey());
 
     public static final RegistrySupplier<EntityType<ReapingPillagerEntity>> REAPING_PILLAGER;
 

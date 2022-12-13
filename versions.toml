@@ -1,19 +1,19 @@
 [versions]
-minecraft = "1.19"
-quilt-mappings = "1.19+build.1"
+minecraft = "1.19.3"
+quilt-mappings = "1.19.3+build.3"
 
-fabric-loader = "0.14.8"
-quilt-loader = "0.17.0"
-forge = "1.19-41.0.94"
+fabric-loader = "0.14.11"
+quilt-loader = "0.18.1-beta.23"
+forge = "1.19.3-44.0.18"
 
-architectury = "5.9.30"
-cloth-config = "7.0.73"
-mod-menu = "4.0.4"
-pehkui = "3.3.3"
+architectury = "7.0.65"
+cloth-config = "9.0.94"
+mod-menu = "5.0.2"
+pehkui = "3.6.0"
 
-quilted-fabric-api = "2.0.0-beta.5+0.57.0-1.19"
+quilted-fabric-api = "5.0.0-alpha.5+0.68.1-1.19.3"
 
-pehkui-forge = "3.3.3-1.19-forge"
+pehkui-forge = "3.6.0-1.19.2-forge"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }

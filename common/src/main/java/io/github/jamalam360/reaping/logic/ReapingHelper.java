@@ -21,8 +21,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Jamalam360

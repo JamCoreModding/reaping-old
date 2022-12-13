@@ -15,8 +15,8 @@
     ],
     "contact": {
       "homepage": "https://www.curseforge.com/minecraft/mc-mods/reaping",
-      "sources": "https://github.com/JamCoreModding/Reaping",
-      "issues": "https://github.com/JamCoreModding/Reaping/issues"
+      "sources": "https://github.com/JamCoreModding/reaping",
+      "issues": "https://github.com/JamCoreModding/reaping/issues"
     },
     "license": "MIT",
     "icon": "assets/reaping/icon.png",

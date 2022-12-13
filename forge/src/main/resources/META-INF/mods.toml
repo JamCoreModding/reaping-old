@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
-issueTrackerURL = "https://github.com/JamCoreModding/Reaping/issues"
+issueTrackerURL = "https://github.com/JamCoreModding/reaping/issues"
 license = "MIT"
 
 [[mods]]
