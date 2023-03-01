@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "io.github.jamalam360",
+    "id": "reaping",
+    "version": "${version}",
+    "metadata": {
+      "name": "Reaping",
+      "description": "Harvest your animals in the most cursed way possible.",
+      "contributors": {
+        "Jamalam": "Owner"
+      },
+      "contact": {
+        "sources": "https://github.com/JamCoreModding/reaping",
+        "issues": "https://github.com/JamCoreModding/reaping/issues"
+      },
+      "license": "MIT",
+      "icon": "assets/reaping/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": "io.github.jamalam360.reaping.ReapingInit",
+      "client_init": "io.github.jamalam360.reaping.ReapingClientInit",
+      "modmenu": "io.github.jamalam360.reaping.ReapingInit"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.17.0-"
+      },
+      {
+        "id": "quilted_fabric_api",
+        "versions": ">=4.0.0-"
+      },
+      {
+        "id": "minecraft",
+        "versions": ">=1.19"
+      }
+    ]
+  },
+  "mixin": "reaping.mixins.json",
+  "jamlib:compatibility_modules": {
+    "harvest_scythes": "io.github.jamalam360.reaping.content.compat.HarvestScythes"
+  }
+}

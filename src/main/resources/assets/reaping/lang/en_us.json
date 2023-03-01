@@ -1,0 +1,20 @@
+{
+  "item.reaping.iron_reaper": "Iron Reaper",
+  "item.reaping.gold_reaper": "Gold Reaper",
+  "item.reaping.diamond_reaper": "Diamond Reaper",
+  "item.reaping.netherite_reaper": "Netherite Reaper",
+  "item.reaping.human_meat": "Suspicious Meat",
+  "enchantment.reaping.executioner": "Executioner",
+  "enchantment.reaping.executioner.desc": "Add a chance to drop a players head when you reap them.",
+  "enchantment.reaping.curse_of_bluntness": "Curse of Bluntness",
+  "enchantment.reaping.curse_of_bluntness.desc": "Increases the chance that animals will die when they are reaped.",
+  "reaping.advancements.human_meat.title": "Not so tasty...",
+  "reaping.advancements.human_meat.description": "You should have thought twice before eating that.",
+  "reaping.advancements.netherite_reaper.title": "Why would you do that?",
+  "reaping.advancements.netherite_reaper.description": "Seriously, sit down and ask yourself: 'Why did I do that?'",
+  "stat.reaping.use_reaper_tool": "Reaper Tool Uses",
+  "reaping.jamlibconfig.enableDispenserBehavior": "Enable dispensers",
+  "reaping.jamlibconfig.enableDispenserBehavior.tooltip": "Whether to allow reaping to be automated via dispensers.",
+  "reaping.jamlibconfig.reapPlayers": "Allow reaping players",
+  "reaping.jamlibconfig.reapPlayers.tooltip": "Whether to allow reaping players to make them small for a short amount of time."
+}

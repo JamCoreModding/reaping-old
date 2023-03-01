@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "io.github.jamalam360.reaping.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "DamageEnchantmentMixin",
+    "ItemMixin",
+    "PlayerEntityMixin",
+    "VillagerEntityMixin",
+    "pillager.PillagerSpawnerMixin",
+    "pillager.RaidMixin",
+    "pillager.VillagerHostilesSensorMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

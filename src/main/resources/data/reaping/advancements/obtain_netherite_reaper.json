@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:nether/obtain_ancient_debris",
+  "display": {
+    "icon": {
+      "item": "reaping:netherite_reaper",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "reaping.advancements.netherite_reaper.title"
+    },
+    "description": {
+      "translate": "reaping.advancements.netherite_reaper.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 250
+  },
+  "criteria": {
+    "netherite_reaper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "reaping:netherite_reaper"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "netherite_reaper"
+    ]
+  ]
+}
